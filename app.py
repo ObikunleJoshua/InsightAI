@@ -1,6 +1,7 @@
 import streamlit as st
 
 from services.data_service import DataService
+from services.bi_service import BusinessIntelligenceService
 
 
 st.set_page_config(
@@ -18,10 +19,19 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file:
 
-    # Load dataset
+    # ==========================
+    # Load Dataset
+    # ==========================
     df = DataService.load_dataset(uploaded_file)
 
     st.success("Dataset loaded successfully!")
+
+    # ==========================
+    # Generate Intelligence
+    # ==========================
+    profile = DataService.profile_dataset(df)
+    quality = DataService.calculate_quality_score(df)
+    kpis = BusinessIntelligenceService.generate_kpis(df)
 
     # ==========================
     # Dataset Preview
@@ -30,15 +40,8 @@ if uploaded_file:
     st.dataframe(df.head())
 
     # ==========================
-    # Dataset Profile
-    # ==========================
-    profile = DataService.profile_dataset(df)
-
-    # ==========================
     # Dataset Health
     # ==========================
-    quality = DataService.calculate_quality_score(df)
-
     st.subheader("🏥 Dataset Health")
 
     col1, col2 = st.columns(2)
@@ -59,6 +62,56 @@ if uploaded_file:
         st.warning(quality["issues"])
     else:
         st.success("✅ No data quality issues detected.")
+
+    # ==========================
+    # Business KPIs
+    # ==========================
+    st.subheader("📊 Business KPIs")
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric(
+            "Total Sales",
+            f"${kpis.get('total_sales', 0):,.2f}"
+        )
+
+    with col2:
+        st.metric(
+            "Total Profit",
+            f"${kpis.get('total_profit', 0):,.2f}"
+        )
+
+    with col3:
+        st.metric(
+            "Total Orders",
+            kpis.get("total_orders", 0)
+        )
+
+    with col4:
+        st.metric(
+            "Average Order Value",
+            f"${kpis.get('average_order_value', 0):,.2f}"
+        )
+
+    # ==========================
+    # Business Leaders
+    # ==========================
+    st.subheader("🏆 Business Leaders")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.metric(
+            "Top Region",
+            kpis.get("top_region", "N/A")
+        )
+
+    with col2:
+        st.metric(
+            "Top Category",
+            kpis.get("top_category", "N/A")
+        )
 
     # ==========================
     # Dataset Profile
