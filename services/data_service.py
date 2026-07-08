@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 class DataService:
 
     @staticmethod
