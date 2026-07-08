@@ -1,0 +1,12 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+.env
+
+uploads/*
+!uploads/.gitkeep
+
+exports/*
+!exports/.gitkeep
