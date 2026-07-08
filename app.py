@@ -2,6 +2,7 @@ import streamlit as st
 
 from services.data_service import DataService
 from services.bi_service import BusinessIntelligenceService
+from services.dataset_classifier import DatasetClassifier
 
 
 st.set_page_config(
@@ -23,8 +24,10 @@ if uploaded_file:
     # Load Dataset
     # ==========================
     df = DataService.load_dataset(uploaded_file)
+    dataset_type = DatasetClassifier.classify(df)
 
     st.success("Dataset loaded successfully!")
+    st.info(f"📁 Dataset Type: {dataset_type}")
 
     # ==========================
     # Generate Intelligence
