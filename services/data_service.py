@@ -2,52 +2,66 @@ import pandas as pd
 
 
 class DataService:
-    """Handles loading and profiling datasets."""
 
     @staticmethod
     def load_dataset(uploaded_file):
-        """Load CSV or Excel file into a DataFrame."""
-
-        if uploaded_file.name.endswith(".csv"):
-            return pd.read_csv(uploaded_file)
-
-        elif uploaded_file.name.endswith(".xlsx"):
-            return pd.read_excel(uploaded_file)
-
-        else:
-            raise ValueError("Unsupported file format.")
+        ...
+        ...
 
     @staticmethod
     def profile_dataset(df):
-        """Generate a dataset profile."""
+        ...
+        ...
 
-        profile = {}
+    @staticmethod
+    def calculate_quality_score(df):
 
-        profile["rows"] = df.shape[0]
-        profile["columns"] = df.shape[1]
+        score = 100
+        issues = []
 
-        profile["missing_values"] = int(df.isnull().sum().sum())
+        # Missing values
+        missing = df.isnull().sum().sum()
 
-        profile["duplicate_rows"] = int(df.duplicated().sum())
+        if missing > 0:
+            score -= 10
+            issues.append(
+                f"{missing} missing values detected"
+            )
 
-        profile["memory_usage_mb"] = round(
-            df.memory_usage(deep=True).sum() / (1024 * 1024),
-            2,
+        # Duplicate rows
+        duplicates = df.duplicated().sum()
+
+        if duplicates > 0:
+            score -= 10
+            issues.append(
+                f"{duplicates} duplicate rows detected"
+            )
+
+        # Empty columns
+        empty_columns = (
+            df.columns[df.isnull().all()]
+            .tolist()
         )
 
-        profile["numeric_columns"] = (
-            df.select_dtypes(include="number")
-            .columns.tolist()
-        )
+        if empty_columns:
+            score -= 5
+            issues.append(
+                f"Empty columns: {empty_columns}"
+            )
 
-        profile["categorical_columns"] = (
-            df.select_dtypes(include="object")
-            .columns.tolist()
-        )
+        score = max(score, 0)
 
-        profile["date_columns"] = (
-            df.select_dtypes(include="datetime")
-            .columns.tolist()
-        )
+        if score >= 90:
+            quality = "Excellent"
+        elif score >= 70:
+            quality = "Good"
+        elif score >= 50:
+            quality = "Fair"
+        else:
+            quality = "Poor"
 
-        return profile
+        return {
+            "score": score,
+            "quality": quality,
+            "issues": issues,
+        }
