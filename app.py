@@ -3,6 +3,8 @@ import streamlit as st
 from services.data_service import DataService
 from services.bi_service import BusinessIntelligenceService
 from services.dataset_classifier import DatasetClassifier
+from services.chart_service import ChartService
+from services.review_service import ReviewService
 
 
 st.set_page_config(
@@ -10,41 +12,29 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📊 InsightAI")
-st.subheader("AI-Powered Business Intelligence & Data Analysis Assistant")
 
-uploaded_file = st.file_uploader(
-    "Upload a CSV or Excel file",
-    type=["csv", "xlsx"]
-)
+# ==========================
+# UI Functions
+# ==========================
 
-if uploaded_file:
-
-    # ==========================
-    # Load Dataset
-    # ==========================
-    df = DataService.load_dataset(uploaded_file)
-    dataset_type = DatasetClassifier.classify(df)
+def show_dataset_classification(dataset_type):
 
     st.success("Dataset loaded successfully!")
-    st.info(f"📁 Dataset Type: {dataset_type}")
 
-    # ==========================
-    # Generate Intelligence
-    # ==========================
-    profile = DataService.profile_dataset(df)
-    quality = DataService.calculate_quality_score(df)
-    kpis = BusinessIntelligenceService.generate_kpis(df)
+    st.info(
+        f"""
+📁 Dataset Classification
 
-    # ==========================
-    # Dataset Preview
-    # ==========================
-    st.subheader("👀 Dataset Preview")
-    st.dataframe(df.head())
+{dataset_type['label']}
 
-    # ==========================
-    # Dataset Health
-    # ==========================
+Confidence Score:
+{dataset_type['confidence']:.0%}
+"""
+    )
+
+
+def show_health(quality):
+
     st.subheader("🏥 Dataset Health")
 
     col1, col2 = st.columns(2)
@@ -61,106 +51,263 @@ if uploaded_file:
             quality["quality"]
         )
 
-    if quality["issues"]:
-        for issue in quality["issues"]:
-            st.warning(f"⚠️ {issue}")
-    else:
-        st.success("✅ No data quality issues detected.")
 
-    # ==========================
-    # Business KPIs
-    # ==========================
+    if quality["issues"]:
+
+        for issue in quality["issues"]:
+            st.warning(
+                f"⚠️ {issue}"
+            )
+
+    else:
+        st.success(
+            "✅ No data quality issues detected."
+        )
+
+
+def show_business_kpis(kpis):
+
     st.subheader("📊 Business KPIs")
 
     col1, col2, col3, col4 = st.columns(4)
 
+
     with col1:
         st.metric(
             "Total Sales",
-            f"${kpis.get('total_sales', 0):,.2f}"
+            f"${kpis.get('total_sales',0):,.2f}"
         )
 
     with col2:
         st.metric(
             "Total Profit",
-            f"${kpis.get('total_profit', 0):,.2f}"
+            f"${kpis.get('total_profit',0):,.2f}"
         )
 
     with col3:
         st.metric(
             "Total Orders",
-            kpis.get("total_orders", 0)
+            kpis.get("total_orders",0)
         )
 
     with col4:
         st.metric(
             "Average Order Value",
-            f"${kpis.get('average_order_value', 0):,.2f}"
+            f"${kpis.get('average_order_value',0):,.2f}"
         )
 
-    # ==========================
-    # Business Leaders
-    # ==========================
-    st.subheader("🏆 Business Leaders")
 
-    col1, col2 = st.columns(2)
+def show_review_kpis(kpis):
 
-    with col1:
-        st.metric(
-            "Top Region",
-            kpis.get("top_region", "N/A")
-        )
-
-    with col2:
-        st.metric(
-            "Top Category",
-            kpis.get("top_category", "N/A")
-        )
-
-    # ==========================
-    # Dataset Profile
-    # ==========================
-    st.subheader("📋 Dataset Profile")
+    st.subheader("⭐ Review KPIs")
 
     col1, col2, col3, col4 = st.columns(4)
 
+
     with col1:
-        st.metric("Rows", profile["rows"])
+        st.metric(
+            "Total Reviews",
+            kpis.get("total_reviews",0)
+        )
 
     with col2:
-        st.metric("Columns", profile["columns"])
+        st.metric(
+            "Average Rating",
+            kpis.get("average_rating","N/A")
+        )
 
     with col3:
-        st.metric("Missing Values", profile["missing_values"])
+        st.metric(
+            "Recommendation Rate",
+            f"{kpis.get('recommendation_rate',0)}%"
+        )
 
     with col4:
-        st.metric("Duplicate Rows", profile["duplicate_rows"])
+        st.metric(
+            "Top Department",
+            kpis.get("top_department","N/A")
+        )
 
-    # ==========================
-    # Column Analysis
-    # ==========================
-    st.subheader("🔍 Column Analysis")
 
-    col1, col2 = st.columns(2)
+def show_charts(df, dataset_type):
+
+    st.subheader("📈 Visual Analytics")
+
+
+    if dataset_type["type"] == "business":
+
+        chart = ChartService.sales_by_region(df)
+
+        if chart:
+            st.plotly_chart(
+                chart,
+                use_container_width=True
+            )
+
+
+        chart = ChartService.sales_by_category(df)
+
+        if chart:
+            st.plotly_chart(
+                chart,
+                use_container_width=True
+            )
+
+
+    elif dataset_type["type"] == "reviews":
+
+        chart = ChartService.ratings_distribution(df)
+
+        if chart:
+            st.plotly_chart(
+                chart,
+                use_container_width=True
+            )
+
+
+def show_profile(profile):
+
+    st.subheader("📋 Dataset Profile")
+
+
+    col1, col2, col3, col4 = st.columns(4)
+
 
     with col1:
-        st.write("### Numeric Columns")
-        st.write(profile["numeric_columns"])
+        st.metric(
+            "Rows",
+            profile["rows"]
+        )
 
     with col2:
-        st.write("### Categorical Columns")
-        st.write(profile["categorical_columns"])
+        st.metric(
+            "Columns",
+            profile["columns"]
+        )
 
-    if profile["date_columns"]:
-        st.write("### Date Columns")
-        st.write(profile["date_columns"])
+    with col3:
+        st.metric(
+            "Missing Values",
+            profile["missing_values"]
+        )
 
-    # ==========================
-    # Dataset Information
-    # ==========================
+    with col4:
+        st.metric(
+            "Duplicate Rows",
+            profile["duplicate_rows"]
+        )
+
+
+    st.subheader("🔍 Column Analysis")
+
+
+    st.write(
+        "### Numeric Columns"
+    )
+
+    st.write(
+        profile["numeric_columns"]
+    )
+
+
+    st.write(
+        "### Categorical Columns"
+    )
+
+    st.write(
+        profile["categorical_columns"]
+    )
+
+
     st.subheader("💾 Dataset Information")
+
 
     st.metric(
         "Memory Usage (MB)",
         profile["memory_usage_mb"]
+    )
+
+
+# ==========================
+# Main Application
+# ==========================
+
+st.title("📊 InsightAI")
+
+st.subheader(
+    "AI-Powered Business Intelligence & Data Analysis Assistant"
+)
+
+
+uploaded_file = st.file_uploader(
+    "Upload a CSV or Excel file",
+    type=["csv", "xlsx"]
+)
+
+
+if uploaded_file:
+
+    df = DataService.load_dataset(
+        uploaded_file
+    )
+
+
+    dataset_type = DatasetClassifier.classify(
+        df
+    )
+
+
+    profile = DataService.profile_dataset(
+        df
+    )
+
+
+    quality = DataService.calculate_quality_score(
+        df
+    )
+
+
+    st.subheader("👀 Dataset Preview")
+
+    st.dataframe(
+        df.head()
+    )
+
+
+    show_dataset_classification(
+        dataset_type
+    )
+
+
+    show_health(
+        quality
+    )
+
+
+    if dataset_type["type"] == "business":
+
+        kpis = BusinessIntelligenceService.generate_kpis(df)
+
+        show_business_kpis(
+            kpis
+        )
+
+
+    elif dataset_type["type"] == "reviews":
+
+        kpis = ReviewService.generate_review_kpis(df)
+
+        show_review_kpis(
+            kpis
+        )
+
+
+    show_charts(
+        df,
+        dataset_type
+    )
+
+
+    show_profile(
+        profile
     )
