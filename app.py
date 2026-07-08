@@ -62,7 +62,8 @@ if uploaded_file:
         )
 
     if quality["issues"]:
-        st.warning(quality["issues"])
+        for issue in quality["issues"]:
+            st.warning(f"⚠️ {issue}")
     else:
         st.success("✅ No data quality issues detected.")
 

@@ -4,37 +4,41 @@ class DatasetClassifier:
     @staticmethod
     def classify(df):
 
-        columns = [c.lower() for c in df.columns]
+        columns = [str(col).strip().lower() for col in df.columns]
 
-        business_columns = {
+        business_keywords = [
             "sales",
             "profit",
-            "category",
             "region",
+            "category",
             "discount",
             "quantity",
-        }
+        ]
 
-        review_columns = {
-            "review text",
+        review_keywords = [
+            "review",
             "rating",
-            "recommended ind",
-            "department name",
-            "class name",
-        }
+            "recommend",
+            "department",
+            "class",
+            "feedback",
+            "title",
+        ]
 
-        business_matches = len(
-            business_columns.intersection(columns)
+        business_score = sum(
+            any(keyword in col for col in columns)
+            for keyword in business_keywords
         )
 
-        review_matches = len(
-            review_columns.intersection(columns)
+        review_score = sum(
+            any(keyword in col for col in columns)
+            for keyword in review_keywords
         )
 
-        if business_matches >= 3:
-            return "Business Dataset"
+        if business_score >= 3:
+            return "📈 Business Dataset"
 
-        if review_matches >= 2:
-            return "Customer Reviews Dataset"
+        if review_score >= 3:
+            return "⭐ Customer Reviews Dataset"
 
-        return "Generic Dataset"
+        return "📄 Generic Dataset"
