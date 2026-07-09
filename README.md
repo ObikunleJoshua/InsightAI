@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="InsightAI" width="250">
+  <img src="assets/logo-trans2.png" alt="InsightAI" width="200">
 </p>
 <p align="center">
 AI-powered Decision Intelligence Platform
