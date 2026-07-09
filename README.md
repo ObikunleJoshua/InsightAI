@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/InsightAI Banner.png" alt="InsightAI Banner" width="100%">
+  <img src="assets/logo.png" width="90" alt="InsightAI Logo">
 </p>
 
-<h1 align="center">InsightAI</h1>
+<h2 align="center">InsightAI</h2>
 
 <p align="center">
 AI-powered Decision Intelligence Platform
@@ -14,128 +14,148 @@ AI-powered Decision Intelligence Platform
 
 <p align="center">
 
-<img src="https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge">
 
-<img src="https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python"/>
+<img src="https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python">
 
-<img src="https://img.shields.io/badge/Streamlit-App-red?style=for-the-badge&logo=streamlit"/>
+<img src="https://img.shields.io/badge/Streamlit-Framework-red?style=for-the-badge&logo=streamlit">
 
-<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/AI-Ollama-purple?style=for-the-badge">
 
-<img src="https://img.shields.io/badge/Powered%20by-AI-purple?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
 
+</p>
+
+<p align="center">
+<img src="assets/banner.png" width="100%" alt="InsightAI Banner">
 </p>
 
 ---
 
-# Overview
+## Overview
 
-**InsightAI** is an AI-powered Decision Intelligence Platform built to help businesses transform raw data into actionable insights.
+InsightAI is an AI-powered Decision Intelligence Platform that helps businesses transform raw data into meaningful insights, interactive dashboards, AI-generated reports, and actionable business recommendations.
 
-Instead of simply displaying charts and dashboards, InsightAI combines Business Intelligence, Artificial Intelligence, and data analytics to help users understand what happened, why it happened, and what actions they should take next.
+Rather than simply visualizing data, InsightAI combines Business Intelligence, Artificial Intelligence, and analytics to answer three essential questions:
 
-The long-term vision is to create a unified analytics workspace where businesses can upload data, explore insights, generate executive reports, monitor KPIs, and receive AI-powered recommendations from a single platform.
+- **What happened?**
+- **Why did it happen?**
+- **What should we do next?**
 
----
-
-# Why InsightAI?
-
-Modern businesses generate large amounts of data but often struggle to convert it into meaningful decisions.
-
-InsightAI bridges that gap by combining:
-
-- 📊 Business Intelligence
-- 🤖 Artificial Intelligence
-- 📈 Interactive Analytics
-- 💡 Decision Intelligence
-- 📄 Executive Reporting
-
-into one intelligent platform.
+The vision is to provide organizations with a single intelligent workspace for exploring data, monitoring KPIs, generating reports, and making smarter business decisions.
 
 ---
 
-# Key Features
+## Key Features
 
-### Analytics Dashboard
+### 📊 Business Intelligence
 
 - Interactive dashboards
 - KPI monitoring
 - Trend analysis
-- Business metrics
+- Business reporting
 
-### AI Intelligence
+### 🤖 Artificial Intelligence
 
 - AI-generated reports
-- Natural language insights
 - Executive summaries
+- Natural language insights
 - Business recommendations
 
-### Data Analysis
+### 📈 Analytics
 
+- Exploratory Data Analysis (EDA)
 - Data profiling
 - Data cleaning
-- Exploratory Data Analysis (EDA)
 - Statistical summaries
 
-### Visualization
+### 📉 Visualization
 
 - Interactive charts
-- Power BI-inspired dashboards
-- Drill-down analysis
 - Dynamic filtering
-
-### Decision Intelligence
-
-- KPI health monitoring
-- Opportunity detection
-- Performance tracking
-- Future forecasting *(Coming Soon)*
+- Comparative analysis
+- Business metrics
 
 ---
 
-# System Architecture
+## Dashboard
+
+<p align="center">
+<img src="assets/dashboard.jpeg" width="95%">
+</p>
+
+---
+
+## AI Report
+
+<p align="center">
+<img src="assets/ai-analyst.jpeg" width="95%">
+</p>
+
+---
+
+## System Architecture
 
 ```text
-                    Data Sources
-                          │
+                 Data Sources
       CSV • Excel • SQL • APIs
-                          │
-                          ▼
-                  Data Processing
+                    │
+                    ▼
+           Data Processing Layer
       Cleaning • Validation • Profiling
-                          │
-                          ▼
-                Analytics Engine
-      KPIs • Trends • Statistics • Charts
-                          │
-                          ▼
-                   AI Intelligence
-     Report Generation • Insights • Q&A
-                          │
-                          ▼
-                 Decision Dashboard
+                    │
+                    ▼
+            Analytics Engine
+     KPIs • Trends • Statistics • Charts
+                    │
+                    ▼
+             AI Intelligence
+      Reports • Insights • Q&A
+                    │
+                    ▼
+         Decision Intelligence
+          Dashboards & Actions
 ```
 
 ---
 
-# Project Structure
+## Tech Stack
+
+| Category | Technologies |
+|-----------|--------------|
+| Language | Python |
+| Framework | Streamlit |
+| Data Analysis | Pandas, NumPy |
+| Visualization | Plotly |
+| AI | Ollama, Qwen |
+| Database | SQLite *(planned)* |
+| Machine Learning | Scikit-learn *(planned)* |
+
+---
+
+## Project Structure
 
 ```text
 InsightAI/
+
+├── assets/
+│   ├── banner.png
+│   ├── logo.png
+│   ├── dashboard.jpeg
+│   ├── ai-analyst.jpeg
+│   └── icon.png
 │
-├── assets/                 # Images, banners and branding
+├── components/
 │
-├── components/             # Streamlit UI components
+├── services/
 │
-├── services/               # Business logic and AI services
+├── data/
 │
-├── data/                   # Sample datasets
+├── exports/
 │
-├── exports/                # Generated reports
+├── tests/
 │
-├── tests/                  # Unit tests
-│
-├── app.py                  # Main application
+├── app.py
 │
 ├── requirements.txt
 │
@@ -144,100 +164,39 @@ InsightAI/
 
 ---
 
-# Screenshots
+## Roadmap
 
-### Dashboard
-
-> *(Screenshot coming soon)*
-
----
-
-### AI Report Generator
-
-> *(Screenshot coming soon)*
-
----
-
-### Business Analytics
-
-> *(Screenshot coming soon)*
-
----
-
-### Executive Dashboard
-
-> *(Screenshot coming soon)*
-
----
-
-# Tech Stack
-
-### Languages
-
-- Python
-
-### Framework
-
-- Streamlit
-
-### Data Analysis
-
-- Pandas
-- NumPy
-
-### Visualization
-
-- Plotly
-
-### Artificial Intelligence
-
-- Ollama
-- Qwen
-
-### Machine Learning *(Planned)*
-
-- Scikit-learn
-
-### Database *(Planned)*
-
-- SQLite
-- PostgreSQL
-
----
-
-# Roadmap
-
-## Version 1
+### Version 1
 
 - [x] Interactive Dashboard
-- [x] KPI Analysis
+- [x] KPI Monitoring
 - [x] Charts & Visualizations
-- [x] Modular Architecture
+- [x] Modular Streamlit Architecture
 
-## Version 2
+### Version 2
 
-- [ ] AI Report Generation
+- [ ] AI Report Generator
+- [ ] Dataset Health Analysis
 - [ ] Executive Summary
-- [ ] Data Profiling
-- [ ] Business Health Analysis
+- [ ] Intelligent Insights
 
-## Version 3
+### Version 3
 
 - [ ] Predictive Analytics
 - [ ] Forecasting
-- [ ] Machine Learning Models
 - [ ] Recommendation Engine
+- [ ] Chat Assistant
 
-## Version 4
+### Version 4
 
-- [ ] Multi-user Support
 - [ ] Authentication
 - [ ] Cloud Deployment
 - [ ] REST API
+- [ ] Multi-user Workspace
 
 ---
 
-# Installation
+## Installation
 
 Clone the repository.
 
@@ -257,15 +216,15 @@ Create a virtual environment.
 python -m venv venv
 ```
 
-Activate it.
+Activate the environment.
 
-### Windows
+**Windows**
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Linux / macOS
+**Linux / macOS**
 
 ```bash
 source venv/bin/activate
@@ -285,43 +244,35 @@ streamlit run app.py
 
 ---
 
-# Current Status
+## Current Status
 
-🚧 **Actively under development**
+🚧 InsightAI is actively under development.
 
-Current focus:
+Current priorities include:
 
-- Improving AI performance
-- Optimizing report generation
-- Reducing inference latency
-- Enhancing dashboard experience
-
----
-
-# Vision
-
-InsightAI aims to become an intelligent decision support platform that enables businesses to move beyond reporting into prediction, recommendation, and AI-assisted decision-making.
-
-Our mission is simple:
-
-> **From Data to Decisions.**
+- AI integration
+- Performance optimization
+- Faster report generation
+- Improved dashboard experience
+- Decision Intelligence features
 
 ---
 
-# Author
+## Author
 
-## Joshua Obikunle
+### Obikunle Joshua
 
-**Business Intelligence Engineer | AI Adoption Specialist**
+Business Intelligence Engineer • AI Adoption Specialist
 
 Creator of **InsightAI**
 
-- LinkedIn: https://www.linkedin.com/in/joshua-obikunle-1b8739111/
-- Email: joshuaobikunle94@gmail.com
+📧 joshuaobikunle94@gmail.com
+
+💼 https://www.linkedin.com/in/joshua-obikunle-1b8739111/
 
 ---
 
-# License
+## License
 
 This project is licensed under the **MIT License**.
 
@@ -329,10 +280,14 @@ This project is licensed under the **MIT License**.
 
 <p align="center">
 
-### InsightAI
+<img src="assets/logo.png" width="55">
 
-**From Data to Decisions.**
+<br><br>
 
-Built with ❤️ by Joshua Obikunle
+**InsightAI**
+
+<br>
+
+<i>From Data to Decisions.</i>
 
 </p>
