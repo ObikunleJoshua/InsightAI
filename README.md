@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="assets/logo.png" width="90" alt="InsightAI Logo">
+  <img src="assets/logo-trans.png" alt="InsightAI" width="360">
 </p>
-
-<h2 align="center">InsightAI</h2>
 
 <p align="center">
 AI-powered Decision Intelligence Platform
@@ -13,21 +11,15 @@ AI-powered Decision Intelligence Platform
 </p>
 
 <p align="center">
-
-<img src="https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge">
-
-<img src="https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python">
-
-<img src="https://img.shields.io/badge/Streamlit-Framework-red?style=for-the-badge&logo=streamlit">
-
-<img src="https://img.shields.io/badge/AI-Ollama-purple?style=for-the-badge">
-
-<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
-
+<img src="https://img.shields.io/badge/Status-Under%20Development-orange?style=flat-square">
+<img src="https://img.shields.io/badge/Python-3.12-blue?style=flat-square&logo=python">
+<img src="https://img.shields.io/badge/Streamlit-Framework-red?style=flat-square&logo=streamlit">
+<img src="https://img.shields.io/badge/Ollama-AI-purple?style=flat-square">
+<img src="https://img.shields.io/badge/License-MIT-green?style=flat-square">
 </p>
 
 <p align="center">
-<img src="assets/banner.png" width="100%" alt="InsightAI Banner">
+  <img src="assets/banner.png" width="82%" alt="InsightAI Banner">
 </p>
 
 ---
@@ -75,22 +67,6 @@ The vision is to provide organizations with a single intelligent workspace for e
 - Dynamic filtering
 - Comparative analysis
 - Business metrics
-
----
-
-## Dashboard
-
-<p align="center">
-<img src="assets/dashboard.jpeg" width="95%">
-</p>
-
----
-
-## AI Report
-
-<p align="center">
-<img src="assets/ai-analyst.jpeg" width="95%">
-</p>
 
 ---
 
@@ -278,16 +254,10 @@ This project is licensed under the **MIT License**.
 
 ---
 
-<p align="center">
-
-<img src="assets/logo.png" width="55">
-
 <br><br>
 
 **InsightAI**
 
 <br>
-
 <i>From Data to Decisions.</i>
-
 </p>
