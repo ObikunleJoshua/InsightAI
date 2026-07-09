@@ -16,11 +16,6 @@ AI-powered Decision Intelligence Platform
 <img src="https://img.shields.io/badge/Ollama-AI-purple?style=flat-square">
 <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square">
 </p>
-
-<p align="center">
-  <img src="assets/banner.png" width="82%" alt="InsightAI Banner">
-</p>
-
 ---
 
 ## Overview
