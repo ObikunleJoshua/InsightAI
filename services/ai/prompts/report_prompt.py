@@ -1,12 +1,8 @@
-import ollama
-
-class AIService:
-    """Generates AI-powered insights from computed analytics."""
-
-    MODEL = "qwen3:4b"
+class ReportPrompt:
+    """Builds prompts for AI-generated business intelligence reports."""
 
     @staticmethod
-    def generate_insights(dataset_type, profile, quality, kpis):
+    def build(dataset_type, profile, quality, kpis):
 
         prompt = f"""
 You are a Senior Business Intelligence Analyst.
@@ -48,16 +44,4 @@ Do NOT invent numbers.
 Use only the information provided.
 """
 
-        prompt = prompt[:3000]
-
-        response = ollama.chat(
-            model=AIService.MODEL,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        )
-
-        return response["message"]["content"]
+        return prompt[:3000]

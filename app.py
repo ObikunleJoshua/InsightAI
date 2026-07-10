@@ -7,7 +7,7 @@ from services.data_service import DataService
 from services.dataset_classifier import DatasetClassifier
 from services.bi_service import BusinessIntelligenceService
 from services.review_service import ReviewService
-from services.ai_service import AIService
+from services.ai.ai_manager import AIManager
 
 # ==========================
 # Components
@@ -146,7 +146,7 @@ if st.button("🚀 Generate AI Report"):
 
     with st.spinner("Analyzing dataset..."):
 
-        st.session_state.ai_summary = AIService.generate_insights(
+        st.session_state.ai_summary = AIManager.generate_insights(
             dataset_type,
             profile,
             quality,
