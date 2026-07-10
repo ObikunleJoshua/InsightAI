@@ -243,14 +243,12 @@ Creator of **InsightAI**
 
 ## License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **Apache-2.0 license**.
 
 ---
 
 <br><br>
-
 **InsightAI**
-
 <br>
 <i>From Data to Decisions.</i>
 </p>
