@@ -9,10 +9,10 @@ class BaseProvider(ABC):
     @abstractmethod
     def generate_insights(
         self,
-        dataset_type,
-        profile,
-        quality,
-        kpis,
-    ):
+        dataset_type: dict,
+        profile: dict,
+        quality: dict,
+        kpis: dict,
+    ) -> str:
         """Generate AI insights."""
         pass
