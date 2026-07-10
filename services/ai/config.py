@@ -15,7 +15,7 @@ application.
 # - "openai"
 # - "azure"
 
-AI_PROVIDER = "ollama"
+AI_PROVIDER = "disabled"
 
 # ==================================================
 # Ollama Configuration

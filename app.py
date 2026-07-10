@@ -8,6 +8,7 @@ from services.dataset_classifier import DatasetClassifier
 from services.bi_service import BusinessIntelligenceService
 from services.review_service import ReviewService
 from services.ai.ai_manager import AIManager
+from services.export.export_manager import ExportManager
 
 # ==========================
 # Components
@@ -158,6 +159,45 @@ if st.session_state.ai_summary:
     show_ai_panel(
         st.session_state.ai_summary
     )
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+
+        if st.button("📥 Export Markdown"):
+
+            exported_file = ExportManager.export(
+                report=st.session_state.ai_summary,
+                filename="insightai_report",
+                file_type="markdown",
+            )
+
+            st.success(f"Markdown exported to:\n\n{exported_file}")
+
+    with col2:
+
+        if st.button("📄 Export DOCX"):
+
+            exported_file = ExportManager.export(
+                report=st.session_state.ai_summary,
+                filename="insightai_report",
+                file_type="docx",
+            )
+
+            st.success(f"DOCX exported to:\n\n{exported_file}")
+
+    with col3:
+
+        if st.button("📕 Export PDF"):
+
+            exported_file = ExportManager.export(
+                report=st.session_state.ai_summary,
+                filename="insightai_report",
+                file_type="pdf",
+            )
+
+            st.success(f"PDF exported to:\n\n{exported_file}")
+        
 show_charts(
     df,
     dataset_type
