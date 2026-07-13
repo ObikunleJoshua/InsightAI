@@ -34,16 +34,19 @@ st.set_page_config(
     layout="wide"
 )
 
-col1, col2 = st.columns([1, 6])
+col1, col2 = st.columns([1, 7])
 
 with col1:
     st.image("assets/logo.png", width=90)
 
 with col2:
     st.title("InsightAI")
-    st.caption(
-        "AI-Powered Business Intelligence & Data Analysis Platform"
+    st.markdown(
+        "**Data Intelligence Platform**"
     )
+    st.caption("Version 0.1.0")
+
+st.divider()
 
 # ==========================
 # Upload
@@ -96,18 +99,6 @@ else:
 # Dashboard
 # ==========================
 
-show_dataset_classification(dataset_type)
-
-st.subheader("👀 Dataset Preview")
-
-st.dataframe(df.head())
-
-show_health(quality)
-
-# ==========================
-# AI Session State
-# ==========================
-
 if "ai_summary" not in st.session_state:
     st.session_state.ai_summary = None
 
@@ -122,18 +113,46 @@ if current_dataset != st.session_state.last_dataset:
     st.session_state.ai_summary = None
     st.session_state.last_dataset = current_dataset
 
-if dataset_type["type"] == "business":
+tab1, tab2, tab3, tab4 = st.tabs(
+    [
+        "**Overview**",
+        "**AI Report**",
+        "**Charts**",
+        "**Dataset Profile**",
+    ]
+)
 
-    show_business_kpis(kpis)
+# ==========================
+# Overview
+# ==========================
 
-elif dataset_type["type"] == "reviews":
+with tab1:
 
-    show_review_kpis(kpis)
+    show_dataset_classification(dataset_type)
 
-st.subheader("🤖 AI Analyst")
+    st.subheader("👀 Dataset Preview")
 
-st.info(
-    """
+    st.dataframe(df.head())
+
+    show_health(quality)
+
+    if dataset_type["type"] == "business":
+        show_business_kpis(kpis)
+
+    elif dataset_type["type"] == "reviews":
+        show_review_kpis(kpis)
+
+
+# ==========================
+# AI Report
+# ==========================
+
+with tab2:
+
+    st.subheader("🤖 AI Analyst")
+
+    st.info(
+        """
 The AI Analyst runs locally using Ollama.
 
 Generating insights may take 20–60 seconds depending on
@@ -141,66 +160,80 @@ your computer.
 
 The report is generated only when requested.
 """
-)
-
-if st.button("🚀 Generate AI Report"):
-
-    with st.spinner("Analyzing dataset..."):
-
-        st.session_state.ai_summary = AIManager.generate_insights(
-            dataset_type,
-            profile,
-            quality,
-            kpis
-        )
-
-if st.session_state.ai_summary:
-
-    show_ai_panel(
-        st.session_state.ai_summary
     )
 
-    col1, col2, col3 = st.columns(3)
+    if st.button("🚀 Generate AI Report"):
 
-    with col1:
+        with st.spinner("Analyzing dataset..."):
 
-        if st.button("📥 Export Markdown"):
-
-            exported_file = ExportManager.export(
-                report=st.session_state.ai_summary,
-                filename="insightai_report",
-                file_type="markdown",
+            st.session_state.ai_summary = AIManager.generate_insights(
+                dataset_type,
+                profile,
+                quality,
+                kpis
             )
 
-            st.success(f"Markdown exported to:\n\n{exported_file}")
+    if st.session_state.ai_summary:
 
-    with col2:
+        show_ai_panel(
+            st.session_state.ai_summary
+        )
 
-        if st.button("📄 Export DOCX"):
+        col1, col2, col3 = st.columns(3)
 
-            exported_file = ExportManager.export(
-                report=st.session_state.ai_summary,
-                filename="insightai_report",
-                file_type="docx",
-            )
+        with col1:
 
-            st.success(f"DOCX exported to:\n\n{exported_file}")
+            if st.button("📥 Export Markdown"):
 
-    with col3:
+                exported_file = ExportManager.export(
+                    report=st.session_state.ai_summary,
+                    filename="insightai_report",
+                    file_type="markdown",
+                )
 
-        if st.button("📕 Export PDF"):
+                st.success(f"Markdown exported to:\n\n{exported_file}")
 
-            exported_file = ExportManager.export(
-                report=st.session_state.ai_summary,
-                filename="insightai_report",
-                file_type="pdf",
-            )
+        with col2:
 
-            st.success(f"PDF exported to:\n\n{exported_file}")
-        
-show_charts(
-    df,
-    dataset_type
-)
+            if st.button("📄 Export DOCX"):
 
-show_profile(profile)
+                exported_file = ExportManager.export(
+                    report=st.session_state.ai_summary,
+                    filename="insightai_report",
+                    file_type="docx",
+                )
+
+                st.success(f"DOCX exported to:\n\n{exported_file}")
+
+        with col3:
+
+            if st.button("📕 Export PDF"):
+
+                exported_file = ExportManager.export(
+                    report=st.session_state.ai_summary,
+                    filename="insightai_report",
+                    file_type="pdf",
+                )
+
+                st.success(f"PDF exported to:\n\n{exported_file}")
+
+
+# ==========================
+# Charts
+# ==========================
+
+with tab3:
+
+    show_charts(
+        df,
+        dataset_type
+    )
+
+
+# ==========================
+# Dataset Profile
+# ==========================
+
+with tab4:
+
+    show_profile(profile)
