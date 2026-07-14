@@ -15,6 +15,14 @@ from services.export.export_manager import ExportManager
 # ==========================
 from components.classification import show_dataset_classification
 from components.health import show_health
+from components.header import show_header
+from components.sidebar import show_sidebar
+from components.overview import show_overview
+from components.ai_workspace import show_ai_workspace
+from components.charts_workspace import show_charts_workspace
+from components.profile_workspace import show_profile_workspace
+from components.analytics_workspace import show_analytics_workspace
+from components.filter_sidebar import show_filter_sidebar
 from components.kpis import (
     show_business_kpis,
     show_review_kpis,
@@ -34,19 +42,8 @@ st.set_page_config(
     layout="wide"
 )
 
-col1, col2 = st.columns([1, 7])
-
-with col1:
-    st.image("assets/logo.png", width=90)
-
-with col2:
-    st.title("InsightAI")
-    st.markdown(
-        "**Data Intelligence Platform**"
-    )
-    st.caption("Version 0.1.0")
-
-st.divider()
+show_header()
+show_sidebar()
 
 # ==========================
 # Upload
@@ -71,6 +68,15 @@ if uploaded_file is None:
 # ==========================
 
 df = DataService.load_dataset(uploaded_file)
+
+filters = show_filter_sidebar(df)
+
+from services.filter_service import FilterService
+
+df = FilterService.apply_filters(
+    df,
+    filters,
+)
 
 dataset_type = DatasetClassifier.classify(df)
 
@@ -113,11 +119,12 @@ if current_dataset != st.session_state.last_dataset:
     st.session_state.ai_summary = None
     st.session_state.last_dataset = current_dataset
 
-tab1, tab2, tab3, tab4 = st.tabs(
+tab1, tab2, tab3, tab4, tab5 = st.tabs(
     [
         "**Overview**",
         "**AI Report**",
         "**Charts**",
+        "**Analytics**",
         "**Dataset Profile**",
     ]
 )
@@ -128,20 +135,12 @@ tab1, tab2, tab3, tab4 = st.tabs(
 
 with tab1:
 
-    show_dataset_classification(dataset_type)
-
-    st.subheader("👀 Dataset Preview")
-
-    st.dataframe(df.head())
-
-    show_health(quality)
-
-    if dataset_type["type"] == "business":
-        show_business_kpis(kpis)
-
-    elif dataset_type["type"] == "reviews":
-        show_review_kpis(kpis)
-
+    show_overview(
+        df,
+        dataset_type,
+        quality,
+        kpis,
+    )
 
 # ==========================
 # AI Report
@@ -149,74 +148,12 @@ with tab1:
 
 with tab2:
 
-    st.subheader("🤖 AI Analyst")
-
-    st.info(
-        """
-The AI Analyst runs locally using Ollama.
-
-Generating insights may take 20–60 seconds depending on
-your computer.
-
-The report is generated only when requested.
-"""
+    show_ai_workspace(
+        dataset_type,
+        profile,
+        quality,
+        kpis,
     )
-
-    if st.button("🚀 Generate AI Report"):
-
-        with st.spinner("Analyzing dataset..."):
-
-            st.session_state.ai_summary = AIManager.generate_insights(
-                dataset_type,
-                profile,
-                quality,
-                kpis
-            )
-
-    if st.session_state.ai_summary:
-
-        show_ai_panel(
-            st.session_state.ai_summary
-        )
-
-        col1, col2, col3 = st.columns(3)
-
-        with col1:
-
-            if st.button("📥 Export Markdown"):
-
-                exported_file = ExportManager.export(
-                    report=st.session_state.ai_summary,
-                    filename="insightai_report",
-                    file_type="markdown",
-                )
-
-                st.success(f"Markdown exported to:\n\n{exported_file}")
-
-        with col2:
-
-            if st.button("📄 Export DOCX"):
-
-                exported_file = ExportManager.export(
-                    report=st.session_state.ai_summary,
-                    filename="insightai_report",
-                    file_type="docx",
-                )
-
-                st.success(f"DOCX exported to:\n\n{exported_file}")
-
-        with col3:
-
-            if st.button("📕 Export PDF"):
-
-                exported_file = ExportManager.export(
-                    report=st.session_state.ai_summary,
-                    filename="insightai_report",
-                    file_type="pdf",
-                )
-
-                st.success(f"PDF exported to:\n\n{exported_file}")
-
 
 # ==========================
 # Charts
@@ -224,9 +161,21 @@ The report is generated only when requested.
 
 with tab3:
 
-    show_charts(
+    show_charts_workspace(
         df,
-        dataset_type
+        dataset_type,
+    )
+
+
+# ==========================
+# Analytics
+# ==========================
+
+with tab4:
+
+    show_analytics_workspace(
+    df,
+    quality,
     )
 
 
@@ -234,6 +183,6 @@ with tab3:
 # Dataset Profile
 # ==========================
 
-with tab4:
+with tab5:
 
-    show_profile(profile)
+    show_profile_workspace(profile)
