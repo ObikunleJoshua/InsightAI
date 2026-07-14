@@ -16,7 +16,7 @@ def show_health(quality):
     with col2:
         st.metric(
             "Status",
-            quality["quality"]
+            quality["grade"]
         )
 
     if quality["issues"]:

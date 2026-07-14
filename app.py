@@ -3,6 +3,7 @@ import streamlit as st
 # ==========================
 # Services
 # ==========================
+from services.metadata_service import MetadataService
 from services.data_service import DataService
 from services.dataset_classifier import DatasetClassifier
 from services.bi_service import BusinessIntelligenceService
@@ -69,6 +70,12 @@ if uploaded_file is None:
 
 df = DataService.load_dataset(uploaded_file)
 
+metadata = MetadataService.build(df)
+st.json(metadata)
+
+metadata = MetadataService.build(df)
+st.json(metadata)
+
 filters = show_filter_sidebar(df)
 
 from services.filter_service import FilterService
@@ -80,9 +87,9 @@ df = FilterService.apply_filters(
 
 dataset_type = DatasetClassifier.classify(df)
 
-profile = DataService.profile_dataset(df)
+profile = metadata
 
-quality = DataService.calculate_quality_score(df)
+quality = metadata["quality"]
 
 # ==========================
 # Generate KPIs
