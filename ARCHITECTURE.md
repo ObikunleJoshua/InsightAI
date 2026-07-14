@@ -1,3 +1,5 @@
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/028dc6bf-7b90-44df-9522-8807202563dc" />
+
 # InsightAI Architecture
 
 ## Overview
