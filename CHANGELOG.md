@@ -1,26 +1,27 @@
 # Changelog
 
-## Sprint 2.1 (Complete)
-InsightAI now has:
-- Modular architecture
-- Separate data processing layer
-- Dataset loading service
-- Automatic profiling
-- Professional KPI display
-## Sprint 2.2 (Complete)
-Checks:
-✓ Missing Values
-✓ Duplicate Records
-✓ Empty Columns
-✓ Incorrect Data Types
-✓ Outliers
+All notable changes to this project will be documented in this file.
 
-## Sprint 3 (In Progress)
+---
+
+## [1.0.0] - Unreleased
 
 ### Added
-- Business Intelligence Service
-- KPI calculation engine
+- MetadataService
+- Dataset Intelligence architecture
+- AI Manager provider architecture
+- ExportManager (Markdown, DOCX, PDF)
+- AnalyticsService
+- ChartService
+- DatasetClassifier
+- Metadata unit tests
 
-### Planned
-- KPI dashboard
-- Business metrics cards
+### Changed
+- Refactored DataService to focus on dataset loading only.
+- Migrated AI layer to Dataset Intelligence.
+- Migrated AnalyticsService to MetadataService.
+- Refactored Dataset Profile workspace.
+
+### Fixed
+- Removed duplicated metadata logic.
+- Improved architecture consistency.
