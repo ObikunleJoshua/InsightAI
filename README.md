@@ -19,13 +19,16 @@ AI-powered Decision Intelligence Platform
 
 ## Overview
 
-InsightAI is an AI-powered Decision Intelligence Platform that helps businesses transform raw data into meaningful insights, interactive dashboards, AI-generated reports, and actionable business recommendations.
+InsightAI is an AI-powered Data Intelligence Platform that automatically understands, profiles, analyzes, visualizes and explains structured datasets.
 
-Rather than simply visualizing data, InsightAI combines Business Intelligence, Artificial Intelligence, and analytics to answer three essential questions:
+Unlike traditional analytics tools designed for a single industry, InsightAI is domain-agnostic. It first understands the dataset through a Metadata Service before generating statistical insights, interactive visualizations, AI-generated reports and exportable documentation.
 
-- **What happened?**
-- **Why did it happen?**
-- **What should we do next?**
+Whether the dataset comes from business operations, customer feedback, education, healthcare, finance, research or any other structured source, InsightAI adapts its analysis to the data itself rather than relying on predefined business assumptions.
+
+It asks the question:
+- **What does this dataset contain?**
+- **What insights can be discovered?**
+- **What actions should be considered?**
 
 The vision is to provide organizations with a single intelligent workspace for exploring data, monitoring KPIs, generating reports, and making smarter business decisions.
 
@@ -61,44 +64,47 @@ The vision is to provide organizations with a single intelligent workspace for e
 - Comparative analysis
 - Business metrics
 
+### 🧠 Dataset Intelligence
+
+- Automatic metadata extraction
+- Dataset quality assessment
+- Column profiling
+- Capability detection
+- Domain-agnostic dataset understanding
 ---
 
 ## System Architecture
 
-```text
-                 Data Sources
-      CSV • Excel • SQL • APIs
-                    │
-                    ▼
-           Data Processing Layer
-      Cleaning • Validation • Profiling
-                    │
-                    ▼
-            Analytics Engine
-     KPIs • Trends • Statistics • Charts
-                    │
-                    ▼
-             AI Intelligence
-      Reports • Insights • Q&A
-                    │
-                    ▼
-         Decision Intelligence
-          Dashboards & Actions
-```
-
----
+                 User Upload
+                      │
+                      ▼
+                DataService
+                      │
+                      ▼
+              MetadataService
+                      │
+                      ▼
+          Dataset Intelligence
+                      │
+      ┌─────────┬──────────┬──────────┐
+      ▼         ▼          ▼          ▼
+ Dataset   Analytics   ChartService  AI Manager
+Classifier    │              │            │
+              └──────┬───────┘            │
+                     ▼                    ▼
+                ExportManager       Streamlit UI
 
 ## Tech Stack
 
 | Category | Technologies |
 |-----------|--------------|
-| Language | Python |
+| Language | Python 3.12 |
 | Framework | Streamlit |
-| Data Analysis | Pandas, NumPy |
+| Data Processing | Pandas, NumPy |
 | Visualization | Plotly |
-| AI | Ollama, Qwen |
-| Database | SQLite *(planned)* |
-| Machine Learning | Scikit-learn *(planned)* |
+| AI | Ollama |
+| Export | Markdown, DOCX, PDF |
+| Testing | Pytest |
 
 ---
 
@@ -136,18 +142,25 @@ InsightAI/
 ## Roadmap
 
 ### Version 1
-
-- [x] Interactive Dashboard
-- [x] KPI Monitoring
-- [x] Charts & Visualizations
-- [x] Modular Streamlit Architecture
+- [x] Metadata Service
+- [x] Dataset Intelligence
+- [x] Dataset Classification
+- [x] AI Report Generation
+- [x] Interactive Dashboards
+- [x] Dataset Profiling
+- [x] Analytics Workspace
+- [x] Chart Service
+- [x] Export (Markdown, DOCX, PDF)
 
 ### Version 2
-
-- [ ] AI Report Generator
-- [ ] Dataset Health Analysis
-- [ ] Executive Summary
-- [ ] Intelligent Insights
+- [ ] AI Report Generator (Activeness)
+- [ ] Authentication
+- [ ] SQL databases
+- [ ] Forecasting
+- [ ] ML
+- [ ] RAG
+- [ ] Chat Assistant
+- [ ] Multi-provider AI
 
 ### Version 3
 
@@ -213,23 +226,15 @@ streamlit run app.py
 
 ---
 
-## Current Status
+## Project Status
 
-🚧 InsightAI is actively under development.
-
-Current priorities include:
-
-- AI integration
-- Performance optimization
-- Faster report generation
-- Improved dashboard experience
-- Decision Intelligence features
+InsightAI v1.0 is feature-complete and currently undergoing final stabilization, documentation, testing and deployment preparation.
 
 ---
 
 ## Author
 
-### Obikunle Joshua
+### Joshua OBIKUNLE
 
 Business Intelligence Engineer • AI Adoption Specialist
 

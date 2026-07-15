@@ -1,12 +1,40 @@
+# Virtual Environments
 venv/
 .venv/
+
+# Python
 __pycache__/
 *.pyc
+.pytest_cache/
+
+# IDEs
 .vscode/
+.idea/
+
+# Environment Variables
 .env
 
+# Streamlit
+.streamlit/secrets.toml
+
+# Generated Files
 uploads/*
 !uploads/.gitkeep
 
 exports/*
 !exports/.gitkeep
+
+# Logs
+*.log
+
+# Databases
+*.db
+*.sqlite3
+
+# Build Artifacts
+build/
+dist/
+
+# OS Files
+.DS_Store
+Thumbs.db
