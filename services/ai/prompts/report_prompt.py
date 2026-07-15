@@ -1,30 +1,38 @@
 class ReportPrompt:
-    """Builds prompts for AI-generated business intelligence reports."""
+    """Builds prompts for AI-generated reports."""
 
     @staticmethod
-    def build(dataset_type, profile, quality, kpis):
+    def build(dataset_type, metadata, quality, kpis):
+
+        info = metadata["dataset_info"]
+        capabilities = metadata["capabilities"]
 
         prompt = f"""
-You are a Senior Business Intelligence Analyst.
+You are a Senior Data Intelligence Analyst.
 
-Analyze the following dataset summary.
+Analyze the following dataset metadata.
 
 Dataset Type:
 {dataset_type["label"]}
 
-Quality Score:
-{quality["score"]}%
+Dataset Information:
+- Rows: {info["rows"]}
+- Columns: {info["columns"]}
+- Duplicate Rows: {info["duplicate_rows"]}
+- Memory Usage: {info["memory_usage_mb"]} MB
 
-Rows:
-{profile["rows"]}
+Data Quality:
+- Score: {quality["score"]}%
+- Grade: {quality["grade"]}
+- Warnings: {quality["warnings"]}
 
-Columns:
-{profile["columns"]}
+Dataset Capabilities:
+- Numeric Columns: {len(capabilities["numeric_columns"])}
+- Categorical Columns: {len(capabilities["categorical_columns"])}
+- Datetime Columns: {len(capabilities["datetime_columns"])}
+- Text Columns: {len(capabilities["text_columns"])}
 
-Missing Values:
-{profile["missing_values"]}
-
-KPIs:
+Business KPIs:
 {kpis}
 
 Write:
@@ -35,13 +43,11 @@ Write:
 
 3. Three Recommendations
 
-Keep the response under 300 words.
-
-Keep the report professional.
-
-Do NOT invent numbers.
-
-Use only the information provided.
+Rules:
+- Keep the response under 300 words.
+- Be professional.
+- Do NOT invent numbers.
+- Use only the information provided.
 """
 
         return prompt[:3000]

@@ -2,7 +2,7 @@ import pandas as pd
 
 
 class DataService:
-    """Handles dataset loading."""
+    """Handles dataset loading and validation."""
 
     @staticmethod
     def load_dataset(uploaded_file):

@@ -6,7 +6,7 @@ class DatasetClassifier:
 
         columns = [
             column["name"].strip().lower()
-            for column in metadata["columns_metadata"]
+            for column in metadata["columns_profiles"]
         ]
 
         business_keywords = [

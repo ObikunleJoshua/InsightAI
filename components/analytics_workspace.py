@@ -6,6 +6,7 @@ from services.analytics_service import AnalyticsService
 
 def show_analytics_workspace(
     df,
+    metadata,
     quality,
 ):
     """
@@ -119,7 +120,7 @@ between all numeric columns.
 
     st.subheader("📊 Distribution Analysis")
 
-    numeric_columns = AnalyticsService.get_numeric_columns(df)
+    numeric_columns = AnalyticsService.get_numeric_columns(metadata)
 
     selected_column = st.selectbox(
         "Select a numeric column",

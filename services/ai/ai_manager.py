@@ -21,7 +21,7 @@ class AIManager:
     @staticmethod
     def generate_insights(
         dataset_type,
-        profile,
+        metadata,
         quality,
         kpis,
     ):
@@ -37,7 +37,7 @@ class AIManager:
 
         return provider.generate_insights(
             dataset_type,
-            profile,
+            metadata,
             quality,
             kpis,
         )

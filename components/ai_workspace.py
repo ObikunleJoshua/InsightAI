@@ -7,7 +7,7 @@ from components.ai_panel import show_ai_panel
 
 def show_ai_workspace(
     dataset_type,
-    profile,
+    metadata,
     quality,
     kpis,
 ):
@@ -34,7 +34,7 @@ The report is generated only when requested.
 
             st.session_state.ai_summary = AIManager.generate_insights(
                 dataset_type,
-                profile,
+                metadata,
                 quality,
                 kpis,
             )

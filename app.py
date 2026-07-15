@@ -4,6 +4,7 @@ import streamlit as st
 # Services
 # ==========================
 from services.metadata_service import MetadataService
+from services.filter_service import FilterService
 from services.data_service import DataService
 from services.dataset_classifier import DatasetClassifier
 from services.bi_service import BusinessIntelligenceService
@@ -71,14 +72,8 @@ if uploaded_file is None:
 df = DataService.load_dataset(uploaded_file)
 
 metadata = MetadataService.build(df)
-st.json(metadata)
-
-metadata = MetadataService.build(df)
-st.json(metadata)
 
 filters = show_filter_sidebar(df)
-
-from services.filter_service import FilterService
 
 df = FilterService.apply_filters(
     df,
@@ -87,9 +82,8 @@ df = FilterService.apply_filters(
 
 dataset_type = DatasetClassifier.classify(metadata)
 
-profile = metadata
-
-quality = metadata["quality"]
+dataset_intelligence = metadata
+quality = dataset_intelligence["quality"]
 
 # ==========================
 # Generate KPIs
@@ -157,7 +151,7 @@ with tab2:
 
     show_ai_workspace(
         dataset_type,
-        profile,
+        dataset_intelligence,
         quality,
         kpis,
     )
@@ -182,6 +176,7 @@ with tab4:
 
     show_analytics_workspace(
     df,
+    metadata,
     quality,
     )
 
@@ -192,4 +187,4 @@ with tab4:
 
 with tab5:
 
-    show_profile_workspace(profile)
+    show_profile_workspace(dataset_intelligence)

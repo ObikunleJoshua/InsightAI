@@ -28,7 +28,7 @@ class MetadataService:
             # New architecture
             "dataset_info": dataset_info,
             "schema": MetadataService._schema(df),
-            "columns_metadata": MetadataService._column_metadata(df),
+            "columns_profiles": MetadataService._column_metadata(df),
             "quality": MetadataService._quality(df),
             "capabilities": capabilities,
         }

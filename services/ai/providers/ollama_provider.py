@@ -10,14 +10,14 @@ class OllamaProvider(BaseProvider):
     def generate_insights(
         self,
         dataset_type: dict,
-        profile: dict,
+        metadata: dict,
         quality: dict,
         kpis: dict,
     ) -> str:
 
         prompt = ReportPrompt.build(
             dataset_type,
-            profile,
+            metadata,
             quality,
             kpis,
         )
