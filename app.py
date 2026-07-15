@@ -85,7 +85,7 @@ df = FilterService.apply_filters(
     filters,
 )
 
-dataset_type = DatasetClassifier.classify(df)
+dataset_type = DatasetClassifier.classify(metadata)
 
 profile = metadata
 

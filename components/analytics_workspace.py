@@ -26,6 +26,7 @@ def show_analytics_workspace(
 
     insight = AnalyticsService.calculate_insight_score(
         df,
+        metadata,
         quality,
     )
 

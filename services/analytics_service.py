@@ -57,18 +57,17 @@ class AnalyticsService:
         return results
 
     @staticmethod
-    def get_numeric_columns(df: pd.DataFrame) -> list:
+    def get_numeric_columns(metadata: dict) -> list:
         """
-        Return all numeric column names.
+        Return numeric columns from Dataset Intelligence.
         """
 
-        numeric_df = AnalyticsService.get_numeric_data(df)
-
-        return numeric_df.columns.tolist()
+        return metadata["capabilities"]["numeric_columns"]
 
     @staticmethod
     def calculate_insight_score(
         df: pd.DataFrame,
+        metadata: dict,
         quality: dict,
     ) -> dict:
         """
@@ -88,7 +87,7 @@ class AnalyticsService:
         # ----------------------
 
         numeric_columns = len(
-            AnalyticsService.get_numeric_columns(df)
+            AnalyticsService.get_numeric_columns(metadata)
         )
 
         score += min(numeric_columns, 5) * 4
