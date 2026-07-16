@@ -63,3 +63,16 @@
 ## Performance
 - [ ] Loads within acceptable time
 - [ ] No console errors
+
+---
+
+### Completed
+- [x] Dataset Upload testing
+- [x] Metadata verification
+- [x] Dataset classification verification
+
+### Pending
+- [ ] Analytics
+- [ ] Charts
+- [ ] AI Report
+- [ ] Export
