@@ -4,25 +4,42 @@ import plotly.express as px
 class ChartService:
 
     @staticmethod
+    def _find_column(df, keywords):
+        """
+        Finds the first column containing any of the supplied keywords.
+        """
+        for column in df.columns:
+            column_lower = column.lower()
+            if any(keyword in column_lower for keyword in keywords):
+                return column
+        return None
+
+    @staticmethod
     def sales_by_region(df):
 
-        if (
-            "Region" not in df.columns
-            or
-            "Sales" not in df.columns
-        ):
+        region_column = ChartService._find_column(
+            df,
+            ["region"]
+        )
+
+        sales_column = ChartService._find_column(
+            df,
+            ["sales", "revenue"]
+        )
+
+        if region_column is None or sales_column is None:
             return None
 
         chart_data = (
-            df.groupby("Region")["Sales"]
+            df.groupby(region_column)[sales_column]
             .sum()
             .reset_index()
         )
 
         fig = px.bar(
             chart_data,
-            x="Region",
-            y="Sales",
+            x=region_column,
+            y=sales_column,
             title="Sales by Region"
         )
 
@@ -31,23 +48,29 @@ class ChartService:
     @staticmethod
     def sales_by_category(df):
 
-        if (
-            "Category" not in df.columns
-            or
-            "Sales" not in df.columns
-        ):
+        category_column = ChartService._find_column(
+            df,
+            ["category"]
+        )
+
+        sales_column = ChartService._find_column(
+            df,
+            ["sales", "revenue"]
+        )
+
+        if category_column is None or sales_column is None:
             return None
 
         chart_data = (
-            df.groupby("Category")["Sales"]
+            df.groupby(category_column)[sales_column]
             .sum()
             .reset_index()
         )
 
         fig = px.pie(
             chart_data,
-            names="Category",
-            values="Sales",
+            names=category_column,
+            values=sales_column,
             title="Sales by Category"
         )
 
@@ -56,13 +79,10 @@ class ChartService:
     @staticmethod
     def ratings_distribution(df):
 
-        rating_column = None
-
-        for column in df.columns:
-
-            if "rating" in column.lower():
-                rating_column = column
-                break
+        rating_column = ChartService._find_column(
+            df,
+            ["rating"]
+        )
 
         if rating_column is None:
             return None

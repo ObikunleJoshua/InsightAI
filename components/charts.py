@@ -16,6 +16,10 @@ def show_charts(df, dataset_type):
                 chart,
                 use_container_width=True
             )
+        else:
+            st.info(
+                "Sales by Region chart is unavailable because the required columns could not be identified."
+            )
 
         chart = ChartService.sales_by_category(df)
 
@@ -23,6 +27,10 @@ def show_charts(df, dataset_type):
             st.plotly_chart(
                 chart,
                 use_container_width=True
+            )
+        else:
+            st.info(
+                "Sales by Category chart is unavailable because the required columns could not be identified."
             )
 
     elif dataset_type["type"] == "reviews":
@@ -34,3 +42,12 @@ def show_charts(df, dataset_type):
                 chart,
                 use_container_width=True
             )
+        else:
+            st.info(
+                "No rating column was found for this dataset."
+            )
+
+    else:
+        st.info(
+            "No predefined charts are available for this dataset type."
+        )
