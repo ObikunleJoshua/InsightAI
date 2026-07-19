@@ -76,3 +76,7 @@
 - [ ] Charts
 - [ ] AI Report
 - [ ] Export
+
+### Deferred
+- [ ] Phase 6 - AI Report (hardware limitation)
+- [ ] Phase 7 - Export (depends on AI report)
