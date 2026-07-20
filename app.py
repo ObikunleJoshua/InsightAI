@@ -25,6 +25,7 @@ from components.charts_workspace import show_charts_workspace
 from components.profile_workspace import show_profile_workspace
 from components.analytics_workspace import show_analytics_workspace
 from components.filter_sidebar import show_filter_sidebar
+from components.ai_settings import show_ai_settings
 from components.kpis import (
     show_business_kpis,
     show_review_kpis,

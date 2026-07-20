@@ -1,3 +1,9 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 """
 Application configuration for InsightAI.
 
@@ -12,16 +18,26 @@ application.
 # Available providers:
 # - "disabled"
 # - "ollama"
+# - "gemini"
 # - "openai"
 # - "azure"
 
-AI_PROVIDER = "disabled"
+AI_PROVIDER = "gemini"
 
 # ==================================================
 # Ollama Configuration
 # ==================================================
 
 OLLAMA_MODEL = "qwen3:4b"
+
+# ==================================================
+# Gemini Configuration
+# ==================================================
+
+GEMINI_MODEL = "gemini-3.5-flash"
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+print("Gemini Key Loaded:", GEMINI_API_KEY is not None)
 
 # ==================================================
 # OpenAI Configuration (Placeholder)

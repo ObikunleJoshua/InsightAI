@@ -1,7 +1,7 @@
 import streamlit as st
 
 from services.ai.config import AI_PROVIDER
-
+from components.ai_settings import show_ai_settings
 
 def show_sidebar():
     """
@@ -19,6 +19,8 @@ def show_sidebar():
         st.divider()
 
         st.subheader("⚙️ Settings")
+
+        show_ai_settings()
 
         st.info(
             f"""

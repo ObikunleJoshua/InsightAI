@@ -1,0 +1,10 @@
+google-genai
+python-dotenv
+streamlit
+pandas
+plotly
+numpy
+openpyxl
+python-docx
+reportlab
+ollama
