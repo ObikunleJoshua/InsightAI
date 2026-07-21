@@ -33,7 +33,7 @@ From Data to Decisions.
 
 [Watch InsightAI in action](https://www.linkedin.com/feed/update/urn:li:activity:7485238437487390720/)
 <p align="center">
-  <img src="assets/demo.gif" alt="InsightAI Demo" width="900">
+  <img src="https://raw.githubusercontent.com/ObikunleJoshua/InsightAI/main/assets/demo.gif" alt="InsightAI Demo" width="900">
 </p>
 
 ---
