@@ -1,259 +1,261 @@
 <p align="center">
-  <img src="assets/logo-trans3.png" alt="InsightAI" width="300">
-</p>
-<p align="center">
-AI-powered Decision Intelligence Platform
+  <img src="assets/logo.png" width="320">
 </p>
 
-<p align="center">
-<i>From Data to Decisions.</i>
-</p>
+<h1 align="center">
+InsightAI
+</h1>
 
 <p align="center">
-<img src="https://img.shields.io/badge/Status-Under%20Development-orange?style=flat-square">
-<img src="https://img.shields.io/badge/Python-3.12-blue?style=flat-square&logo=python">
-<img src="https://img.shields.io/badge/Streamlit-Framework-red?style=flat-square&logo=streamlit">
-<img src="https://img.shields.io/badge/Ollama-AI-purple?style=flat-square">
-<img src="https://img.shields.io/badge/License-MIT-green?style=flat-square">
+<b>AI-Powered Decision Intelligence Platform</b>
 </p>
 
-## Overview
+<p align="center">
+From Data to Decisions.
+</p>
 
-InsightAI is an AI-powered Data Intelligence Platform that automatically understands, profiles, analyzes, visualizes and explains structured datasets.
+<p align="center">
 
-Unlike traditional analytics tools designed for a single industry, InsightAI is domain-agnostic. It first understands the dataset through a Metadata Service before generating statistical insights, interactive visualizations, AI-generated reports and exportable documentation.
+![Version](https://img.shields.io/badge/version-v0.1.0-blue?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=for-the-badge&logo=streamlit)
+![Gemini](https://img.shields.io/badge/Google-Gemini-4285F4?style=for-the-badge)
+![Ollama](https://img.shields.io/badge/Ollama-Local_AI-purple?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Apache--2.0-green?style=for-the-badge)
 
-Whether the dataset comes from business operations, customer feedback, education, healthcare, finance, research or any other structured source, InsightAI adapts its analysis to the data itself rather than relying on predefined business assumptions.
-
-It asks the question:
-- **What does this dataset contain?**
-- **What insights can be discovered?**
-- **What actions should be considered?**
-
-The vision is to provide organizations with a single intelligent workspace for exploring data, monitoring KPIs, generating reports, and making smarter business decisions.
+</p>
 
 ---
 
-## Key Features
+# 🎥 Demo
 
-### 📊 Business Intelligence
+▶️ **Watch the full demo here**
 
-- Interactive dashboards
-- KPI monitoring
+[Watch InsightAI in action]([https://...](https://www.linkedin.com/feed/update/urn:li:activity:7485238437487390720/))
+<p align="center">
+    <img src="assets/demo.gif" width="900">
+</p>
+
+---
+
+# Why InsightAI?
+
+Business users generate more data than ever before, but extracting meaningful insights still requires technical expertise.
+
+InsightAI bridges that gap.
+
+Instead of only producing dashboards and statistics, InsightAI automatically understands the dataset, evaluates its quality, discovers patterns, generates business KPIs, and produces AI-powered executive reports that help users make informed decisions.
+
+Unlike traditional analytics dashboards, InsightAI combines:
+
+- Metadata Intelligence
+- Business Intelligence
+- Artificial Intelligence
+
+into one intelligent analytics workflow.
+
+---
+
+# Features
+
+## Dataset Intelligence
+
+- Automatic metadata extraction
+- Dataset classification
+- Column profiling
+- Data quality assessment
+- Capability detection
+
+---
+
+## Business Intelligence
+
+- KPI generation
+- Statistical summaries
 - Trend analysis
-- Business reporting
+- Business metrics
+- Executive reporting
 
-### 🤖 Artificial Intelligence
+---
+
+## Artificial Intelligence
 
 - AI-generated reports
 - Executive summaries
-- Natural language insights
 - Business recommendations
+- Natural language insights
+- Multi-provider AI architecture
 
-### 📈 Analytics
-
-- Exploratory Data Analysis (EDA)
-- Data profiling
-- Data cleaning
-- Statistical summaries
-
-### 📉 Visualization
-
-- Interactive charts
-- Dynamic filtering
-- Comparative analysis
-- Business metrics
-
-### 🧠 Dataset Intelligence
-
-- Automatic metadata extraction
-- Dataset quality assessment
-- Column profiling
-- Capability detection
-- Domain-agnostic dataset understanding
 ---
 
-## System Architecture
+## Data Visualization
 
-                 User Upload
-                      │
-                      ▼
-                DataService
-                      │
-                      ▼
-              MetadataService
-                      │
-                      ▼
-          Dataset Intelligence
-                      │
-      ┌─────────┬──────────┬──────────┐
-      ▼         ▼          ▼          ▼
- Dataset   Analytics   ChartService  AI Manager
-Classifier    │              │            │
-              └──────┬───────┘            │
-                     ▼                    ▼
-                ExportManager       Streamlit UI
+- Interactive dashboards
+- Dynamic charts
+- Comparative analysis
+- Visual exploration
 
-## Tech Stack
+---
 
-| Category | Technologies |
-|-----------|--------------|
+## Export
+
+- Markdown
+- DOCX
+- PDF
+
+---
+
+# AI Providers
+
+InsightAI supports multiple AI providers through a modular Provider Registry.
+
+| Provider | Status |
+|----------|--------|
+| Google Gemini | ✅ |
+| Ollama (Local AI) | ✅ |
+| OpenAI | 🚧 |
+| Azure OpenAI | 🚧 |
+
+Switching AI providers requires **no code changes** through the application interface.
+
+---
+
+# Architecture
+
+```
+                  User Upload
+                       │
+                       ▼
+                 Data Service
+                       │
+                       ▼
+              Metadata Service
+                       │
+                       ▼
+             Dataset Intelligence
+                       │
+       ┌────────┬────────┬────────┐
+       ▼        ▼        ▼        ▼
+ Classification Analytics Charts AI Manager
+                                    │
+                                    ▼
+                           Provider Registry
+                         ┌──────────┴──────────┐
+                         ▼                     ▼
+                  Google Gemini          Ollama
+```
+
+---
+
+# Technology Stack
+
+| Category | Technology |
+|-----------|------------|
 | Language | Python 3.12 |
 | Framework | Streamlit |
-| Data Processing | Pandas, NumPy |
-| Visualization | Plotly |
-| AI | Ollama |
+| Data | Pandas, NumPy |
+| Charts | Plotly |
+| AI | Google Gemini, Ollama |
 | Export | Markdown, DOCX, PDF |
-| Testing | Pytest |
+| Environment | python-dotenv |
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 InsightAI/
-
+│
 ├── assets/
-│   ├── banner.png
-│   ├── logo.png
-│   ├── dashboard.jpeg
-│   ├── ai-analyst.jpeg
-│   └── icon.png
-│
 ├── components/
-│
 ├── services/
-│
-├── data/
-│
-├── exports/
-│
+│     ├── ai/
+│     ├── analytics/
+│     ├── export/
+│     ├── metadata/
+│     └── ...
 ├── tests/
-│
 ├── app.py
-│
 ├── requirements.txt
-│
 └── README.md
 ```
 
 ---
 
-## Roadmap
-
-### Version 1
-- [x] Metadata Service
-- [x] Dataset Intelligence
-- [x] Dataset Classification
-- [x] AI Report Generation
-- [x] Interactive Dashboards
-- [x] Dataset Profiling
-- [x] Analytics Workspace
-- [x] Chart Service
-- [x] Export (Markdown, DOCX, PDF)
-
-### Version 2
-- [ ] AI Report Generator (Activeness)
-- [ ] Authentication
-- [ ] SQL databases
-- [ ] Forecasting
-- [ ] ML
-- [ ] RAG
-- [ ] Chat Assistant
-- [ ] Multi-provider AI
-
-### Version 3
-
-- [ ] Predictive Analytics
-- [ ] Forecasting
-- [ ] Recommendation Engine
-- [ ] Chat Assistant
-
-### Version 4
-
-- [ ] Authentication
-- [ ] Cloud Deployment
-- [ ] REST API
-- [ ] Multi-user Workspace
-
----
-
-## Installation
-
-Clone the repository.
+# Installation
 
 ```bash
 git clone https://github.com/ObikunleJoshua/InsightAI.git
-```
 
-Navigate into the project.
-
-```bash
 cd InsightAI
-```
 
-Create a virtual environment.
+python -m venv .venv
 
-```bash
-python -m venv venv
-```
-
-Activate the environment.
-
-**Windows**
-
-```bash
-venv\Scripts\activate
-```
-
-**Linux / macOS**
-
-```bash
-source venv/bin/activate
-```
-
-Install dependencies.
-
-```bash
 pip install -r requirements.txt
-```
 
-Run the application.
-
-```bash
 streamlit run app.py
 ```
 
 ---
 
-## Project Status
+# Roadmap
 
-InsightAI v1.0 is feature-complete and currently undergoing final stabilization, documentation, testing and deployment preparation.
+## Version 0.1 ✅
+
+- Metadata Engine
+- Dataset Intelligence
+- Business Analytics
+- Interactive Dashboards
+- AI Report Generation
+- Google Gemini Integration
+- Ollama Integration
+- Multi-provider AI
+- Provider Registry
+- Export (Markdown, DOCX, PDF)
 
 ---
 
-## Author
+## Version 0.2
 
-### Joshua OBIKUNLE
+- Conversational AI ("Ask Your Data")
+- SQL Database Support
+- AI Model Selection
+- Improved Report Formatting
+- Authentication
 
-Business Intelligence Engineer • AI Adoption Specialist
+---
 
-Creator of **InsightAI**
+## Version 0.3
+
+- Predictive Analytics
+- Forecasting
+- Machine Learning
+- Cloud Deployment
+- REST API
+
+---
+
+# Contributing
+
+Contributions, feature suggestions, and feedback are welcome.
+
+Feel free to open an Issue or submit a Pull Request.
+
+---
+
+# Author
+
+### Joshua Obikunle
+
+**Business Intelligence Engineer | AI Adoption Specialist**
 
 📧 joshuaobikunle94@gmail.com
 
-💼 https://www.linkedin.com/in/joshua-obikunle-1b8739111/
+💼 LinkedIn:
+https://www.linkedin.com/in/joshua-obikunle-1b8739111/
 
 ---
 
-## License
+# License
 
-This project is licensed under the **Apache-2.0 license**.
-
----
-
-<br><br>
-**InsightAI**
-<br>
-<i>From Data to Decisions.</i>
-</p>
+Licensed under the Apache 2.0 License.
