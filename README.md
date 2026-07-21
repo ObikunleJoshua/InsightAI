@@ -27,7 +27,7 @@ From Data to Decisions.
 
 ---
 
-# 🎥 Demo
+# Demo
 
 ▶️ **Watch the full demo here**
 
