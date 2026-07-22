@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" width="320">
+  <img src="assets/logo.png" width="280">
 </p>
 
 <h1 align="center">
@@ -11,7 +11,7 @@ InsightAI
 </p>
 
 <p align="center">
-Helping organizations make smarter decisions through AI-driven business intelligence, strategic analysis, and digital transformation insights.
+From Data to Decisions.
 </p>
 
 <p align="center">
