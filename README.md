@@ -11,7 +11,7 @@ InsightAI
 </p>
 
 <p align="center">
-From Data to Decisions.
+Helping organizations make smarter decisions through AI-driven business intelligence, strategic analysis, and digital transformation insights.
 </p>
 
 <p align="center">
