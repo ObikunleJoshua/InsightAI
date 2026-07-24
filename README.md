@@ -36,6 +36,9 @@ From Data to Decisions.
   <img src="https://raw.githubusercontent.com/ObikunleJoshua/InsightAI/main/assets/demo.gif" alt="InsightAI Demo" width="900">
 </p>
 
+## Live Demo
+
+https://insightai-2026.streamlit.app/
 ---
 
 # Why InsightAI?

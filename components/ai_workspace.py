@@ -3,6 +3,7 @@ import streamlit as st
 
 from services.ai.ai_manager import AIManager
 from services.export.export_manager import ExportManager
+from services.ai.exceptions import AIServiceUnavailableError
 from components.ai_panel import show_ai_panel
 
 
@@ -55,12 +56,23 @@ def show_ai_workspace(
 
             start_time = time.perf_counter()
 
-            st.session_state.ai_summary = AIManager.generate_insights(
-                dataset_type,
-                metadata,
-                quality,
-                kpis,
-            )
+            try:
+                st.session_state.ai_summary = AIManager.generate_insights(
+                    dataset_type,
+                    metadata,
+                    quality,
+                    kpis,
+                )
+
+            except AIServiceUnavailableError:
+                st.warning(
+                    "⚠️ The AI service is temporarily unavailable. Please try again in a few moments."
+                )
+
+            except Exception:
+                st.error(
+                    "❌ An unexpected error occurred while generating the report."
+                )
 
             end_time = time.perf_counter()
 

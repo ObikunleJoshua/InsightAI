@@ -37,7 +37,6 @@ OLLAMA_MODEL = "qwen3:4b"
 GEMINI_MODEL = "gemini-3.5-flash"
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-print("Gemini Key Loaded:", GEMINI_API_KEY is not None)
 
 # ==================================================
 # OpenAI Configuration (Placeholder)
