@@ -122,6 +122,35 @@ InsightAI supports multiple AI providers through a modular Provider Registry.
 Switching AI providers requires **no code changes** through the application interface.
 
 ---
+## ✨ New in Version 0.2
+
+InsightAI now supports Persona-Driven Executive Analysis.
+
+Users can tailor AI-generated insights by selecting:
+
+- 🧠 AI Persona
+  - Executive Advisor
+  - Financial Analyst
+  - Operations Consultant
+  - ...
+
+- 🎯 Analysis Objective
+  - Executive Summary
+  - Financial Performance Review
+  - Risk Assessment
+  - Digital Transformation Assessment
+  - ...
+
+This allows the same dataset to be analyzed from different professional perspectives, producing recommendations aligned with the user's decision-making context.
+
+
+- 🧠 Persona-driven executive analysis
+- 🎯 Goal-oriented business reasoning
+- 📊 Executive decision support
+- 🤖 Multi-provider AI architecture (Gemini / Ollama)
+- 📄 Export to Markdown, DOCX, and PDF
+
+```
 
 # Architecture
 

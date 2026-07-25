@@ -18,17 +18,21 @@ class GeminiProvider(BaseProvider):
 
     def generate_insights(
         self,
-        dataset_type: dict,
-        metadata: dict,
-        quality: dict,
-        kpis: dict,
+        dataset_type,
+        metadata,
+        quality,
+        kpis,
+        persona,
+        analysis_objective,
     ) -> str:
 
         prompt = ReportPrompt.build(
-            dataset_type,
-            metadata,
-            quality,
-            kpis,
+            dataset_type=dataset_type,
+            metadata=metadata,
+            quality=quality,
+            kpis=kpis,
+            persona=persona,
+            analysis_objective=analysis_objective,
         )
 
         for attempt in range(self.MAX_RETRIES):

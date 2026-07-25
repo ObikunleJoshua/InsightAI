@@ -15,6 +15,8 @@ class AIManager:
         metadata,
         quality,
         kpis,
+        persona,
+        analysis_objective,
     ):
 
         provider_name = st.session_state.get(
@@ -38,4 +40,6 @@ class AIManager:
             metadata,
             quality,
             kpis,
+            persona,
+            analysis_objective,
         )

@@ -2,13 +2,28 @@ class ReportPrompt:
     """Builds prompts for AI-generated reports."""
 
     @staticmethod
-    def build(dataset_type, metadata, quality, kpis):
+    def build(
+        dataset_type,
+        metadata,
+        quality,
+        kpis,
+        persona,
+        analysis_objective,
+    ):
 
         info = metadata["dataset_info"]
         capabilities = metadata["capabilities"]
 
         prompt = f"""
-You are a Senior Data Intelligence Analyst.
+You are acting as an experienced {persona}.
+
+Your primary objective is:
+
+{analysis_objective}
+
+Tailor your analysis, reasoning, recommendations, and communication style to this role and objective.
+
+You are an expert in business analysis and executive decision support.
 
 Analyze the following dataset metadata.
 
@@ -41,13 +56,16 @@ Write:
 
 2. Three Key Findings
 
-3. Three Recommendations
+3. Three Strategic Recommendations
+
+Ensure the analysis reflects the selected AI Persona and Analysis Objective.
 
 Rules:
 - Keep the response under 300 words.
 - Be professional.
 - Do NOT invent numbers.
 - Use only the information provided.
+- Clearly explain the business implications of your findings.
 """
 
         return prompt[:3000]
