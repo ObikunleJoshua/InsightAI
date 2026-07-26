@@ -1,42 +1,11 @@
 DECISION_CONTEXTS = {
-    "Commercial Performance": {
-        "description": "Evaluate revenue generation, sales effectiveness, customer value, and market performance.",
-
-        "keywords": [
-            "sales",
-            "revenue",
-            "profit",
-            "customer",
-            "order",
-            "product",
-            "category",
-            "discount",
-            "quantity",
-            "market",
-            "segment",
-            "price",
-        ],
-
-        "primary_kpis": [
-            "Revenue",
-            "Profit",
-            "Profit Margin",
-            "Average Order Value",
-            "Sales Growth",
-            "Customer Growth",
-        ],
-
-        "frameworks": [
-            "Revenue Analysis",
-            "Product Performance",
-            "Customer Segmentation",
-            "Regional Performance",
-            "Pricing Analysis",
-        ],
-    },
-
     "Financial Performance": {
-        "description": "Assess financial health, profitability, cost efficiency, and investment outcomes.",
+
+        "description":
+            "Assess financial health, profitability, cost efficiency, and investment outcomes.",
+
+        "business_objective":
+            "Improve financial performance by optimizing profitability, controlling costs, strengthening cash flow, and maximizing return on investment.",
 
         "keywords": [
             "expense",
@@ -54,24 +23,70 @@ DECISION_CONTEXTS = {
             "liability",
         ],
 
+        "decision_priorities": [
+            "Profitability",
+            "Cost Optimization",
+            "Cash Flow Management",
+            "Financial Stability",
+            "Investment Performance",
+        ],
+
+        "executive_questions": [
+            "Which business units generate the highest profitability?",
+            "Where are costs increasing faster than revenue?",
+            "How healthy is our cash position?",
+            "Which investments generate the strongest returns?",
+            "What financial risks require immediate attention?"
+        ],
+
         "primary_kpis": [
             "Net Profit",
             "Operating Margin",
+            "Gross Margin",
             "ROI",
-            "Cost Variance",
             "Cash Flow",
+            "Cost Variance",
         ],
 
         "frameworks": [
             "Variance Analysis",
-            "Cost Analysis",
             "Profitability Analysis",
             "Financial Ratio Analysis",
+            "Cost Analysis",
+            "Investment Analysis",
         ],
+
+        "recommended_visualizations": [
+            "Profit Trend",
+            "Expense Breakdown",
+            "Cash Flow Trend",
+            "ROI Comparison",
+            "Budget vs Actual",
+        ],
+
+        "risk_indicators": [
+            "Declining Profit Margin",
+            "Negative Cash Flow",
+            "Budget Overruns",
+            "Increasing Operating Costs",
+            "Poor Investment Returns",
+        ],
+
+        "strategic_focus": [
+            "Improve profitability",
+            "Reduce unnecessary costs",
+            "Strengthen liquidity",
+            "Optimize capital allocation",
+        ]
     },
 
     "Operational Performance": {
-        "description": "Measure operational efficiency, productivity, process quality, and service delivery.",
+
+        "description":
+            "Evaluate operational efficiency, productivity, process quality, and service delivery.",
+
+        "business_objective":
+            "Increase operational efficiency by reducing waste, improving throughput, shortening cycle times, and enhancing service quality.",
 
         "keywords": [
             "operation",
@@ -88,24 +103,69 @@ DECISION_CONTEXTS = {
             "performance",
         ],
 
+        "decision_priorities": [
+            "Efficiency",
+            "Process Optimization",
+            "Capacity Utilization",
+            "Quality Improvement",
+            "Service Delivery",
+        ],
+
+        "executive_questions": [
+            "Which processes are limiting performance?",
+            "Where are operational bottlenecks?",
+            "How efficiently are resources utilized?",
+            "What causes delays?",
+            "Which operations require redesign?"
+        ],
+
         "primary_kpis": [
             "Cycle Time",
             "Throughput",
+            "Utilization",
             "Efficiency",
             "Service Level",
-            "Utilization",
         ],
 
         "frameworks": [
             "Process Analysis",
+            "Operational Excellence",
             "Bottleneck Analysis",
             "Capacity Planning",
-            "Operational Excellence",
+            "Lean Improvement",
         ],
+
+        "recommended_visualizations": [
+            "Process Flow",
+            "Cycle Time Trend",
+            "Capacity Utilization",
+            "Downtime Analysis",
+            "Performance Dashboard",
+        ],
+
+        "risk_indicators": [
+            "High Downtime",
+            "Low Utilization",
+            "Process Delays",
+            "Capacity Constraints",
+            "Declining Productivity",
+        ],
+
+        "strategic_focus": [
+            "Increase efficiency",
+            "Reduce bottlenecks",
+            "Improve productivity",
+            "Optimize operations",
+        ]
     },
 
     "Workforce Performance": {
-        "description": "Evaluate employee performance, engagement, capability, and organizational effectiveness.",
+
+        "description":
+            "Evaluate employee capability, engagement, productivity, and organizational effectiveness.",
+
+        "business_objective":
+            "Build a high-performing workforce by improving engagement, retention, productivity, and talent development.",
 
         "keywords": [
             "employee",
@@ -122,24 +182,68 @@ DECISION_CONTEXTS = {
             "retention",
         ],
 
-        "primary_kpis": [
+        "decision_priorities": [
+            "Talent Development",
             "Employee Retention",
-            "Productivity",
+            "Performance Management",
+            "Workforce Planning",
+            "Employee Engagement",
+        ],
+
+        "executive_questions": [
+            "Which teams perform best?",
+            "Where is employee turnover highest?",
+            "Which skills require investment?",
+            "How effective are managers?",
+            "What factors influence employee performance?"
+        ],
+
+        "primary_kpis": [
+            "Retention Rate",
+            "Employee Productivity",
             "Training Completion",
-            "Absenteeism",
             "Performance Score",
+            "Absenteeism",
         ],
 
         "frameworks": [
             "Talent Analytics",
             "Performance Management",
-            "Workforce Planning",
             "Capability Assessment",
+            "Workforce Planning",
         ],
+
+        "recommended_visualizations": [
+            "Department Performance",
+            "Employee Distribution",
+            "Training Progress",
+            "Retention Trend",
+            "Performance Ratings",
+        ],
+
+        "risk_indicators": [
+            "High Turnover",
+            "Low Engagement",
+            "Skill Gaps",
+            "High Absenteeism",
+            "Uneven Team Performance",
+        ],
+
+        "strategic_focus": [
+            "Retain top talent",
+            "Develop leadership",
+            "Improve workforce capability",
+            "Increase engagement",
+        ]
     },
 
     "Asset Performance": {
-        "description": "Assess asset condition, integrity, reliability, maintenance, and operational risk.",
+
+        "description":
+            "Evaluate asset condition, integrity, reliability, maintenance effectiveness, and operational risk.",
+
+        "business_objective":
+            "Maximize asset reliability, extend service life, reduce operational risk, and optimize maintenance investment.",
 
         "keywords": [
             "asset",
@@ -163,19 +267,58 @@ DECISION_CONTEXTS = {
             "integrity",
         ],
 
-        "primary_kpis": [
+        "decision_priorities": [
             "Asset Integrity",
             "Reliability",
+            "Maintenance Optimization",
+            "Risk Reduction",
+            "Life Extension",
+        ],
+
+        "executive_questions": [
+            "Which assets present the highest operational risk?",
+            "Where should maintenance be prioritized?",
+            "Which defects require immediate intervention?",
+            "How is asset integrity changing over time?",
+            "What investments extend asset life most effectively?"
+        ],
+
+        "primary_kpis": [
+            "Integrity Index",
+            "Reliability",
             "Availability",
-            "Remaining Life",
+            "Remaining Service Life",
             "Risk Rating",
         ],
 
         "frameworks": [
             "Risk-Based Inspection",
             "Asset Integrity Assessment",
-            "Failure Analysis",
+            "Failure Mode Analysis",
             "Maintenance Strategy",
         ],
-    },
+
+        "recommended_visualizations": [
+            "Risk Heat Map",
+            "Integrity Trend",
+            "Defect Distribution",
+            "Asset Condition Dashboard",
+            "Inspection Timeline",
+        ],
+
+        "risk_indicators": [
+            "Corrosion Growth",
+            "Critical Defects",
+            "Inspection Overdue",
+            "High Failure Probability",
+            "Declining Asset Integrity",
+        ],
+
+        "strategic_focus": [
+            "Protect critical assets",
+            "Reduce operational risk",
+            "Optimize maintenance",
+            "Extend asset life",
+        ]
+    }
 }
