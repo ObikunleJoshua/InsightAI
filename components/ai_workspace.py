@@ -1,7 +1,7 @@
 import time
 import streamlit as st
 
-from services.ai.personas import AI_PERSONAS
+from services.ai.personas import PERSONAS
 from services.ai.ai_manager import AIManager
 from services.export.export_manager import ExportManager
 from services.ai.exceptions import AIServiceUnavailableError
@@ -57,12 +57,12 @@ def show_ai_workspace(
 
     persona = st.selectbox(
     "🧠 AI Persona",
-    list(AI_PERSONAS.keys()),
+    list(PERSONAS.keys()),
     key="ai_persona",
     )
 
     st.caption(
-        AI_PERSONAS[persona]["description"]
+        PERSONAS[persona]["description"]
     )
 
     ANALYSIS_OBJECTIVES = [

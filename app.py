@@ -11,6 +11,7 @@ from services.bi_service import BusinessIntelligenceService
 from services.review_service import ReviewService
 from services.ai.ai_manager import AIManager
 from services.export.export_manager import ExportManager
+from services.decision.context_engine import DecisionContextEngine
 
 # ==========================
 # Components
@@ -85,6 +86,16 @@ dataset_type = DatasetClassifier.classify(metadata)
 
 dataset_intelligence = metadata
 quality = dataset_intelligence["quality"]
+
+# ==========================
+# Decision Context
+# ==========================
+
+decision_context = DecisionContextEngine.analyze(
+    columns=df.columns.tolist()
+)
+
+st.session_state["decision_context"] = decision_context
 
 # ==========================
 # Generate KPIs

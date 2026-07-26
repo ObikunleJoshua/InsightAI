@@ -1,5 +1,8 @@
+from services.ai.personas import PERSONAS
+
+
 class ReportPrompt:
-    """Builds prompts for AI-generated reports."""
+    """Builds prompts for AI-generated executive reports."""
 
     @staticmethod
     def build(
@@ -14,18 +17,40 @@ class ReportPrompt:
         info = metadata["dataset_info"]
         capabilities = metadata["capabilities"]
 
+        persona_data = PERSONAS[persona]
+
+        priorities = "\n".join(
+            f"- {item}" for item in persona_data["priorities"]
+        )
+
+        focus_questions = "\n".join(
+            f"- {item}" for item in persona_data["focus_questions"]
+        )
+
         prompt = f"""
-You are acting as an experienced {persona}.
+You are the organization's {persona}.
 
-Your primary objective is:
+PRIMARY GOAL
+------------
+{persona_data["primary_goal"]}
 
+CURRENT ANALYSIS OBJECTIVE
+--------------------------
 {analysis_objective}
 
-Tailor your analysis, reasoning, recommendations, and communication style to this role and objective.
+YOUR PRIORITIES
+---------------
+{priorities}
 
-You are an expert in business analysis and executive decision support.
+WHILE ANALYZING THE DATA, CONTINUALLY ASK YOURSELF
+--------------------------------------------------
+{focus_questions}
 
-Analyze the following dataset metadata.
+COMMUNICATION STYLE
+-------------------
+{persona_data["communication_style"]}
+
+Analyze ONLY the information below.
 
 Dataset Type:
 {dataset_type["label"]}
@@ -50,22 +75,19 @@ Dataset Capabilities:
 Business KPIs:
 {kpis}
 
-Write:
+Prepare a professional report with the following sections:
 
 1. Executive Summary
-
 2. Three Key Findings
-
 3. Three Strategic Recommendations
 
-Ensure the analysis reflects the selected AI Persona and Analysis Objective.
-
-Rules:
-- Keep the response under 300 words.
-- Be professional.
-- Do NOT invent numbers.
-- Use only the information provided.
-- Clearly explain the business implications of your findings.
+Requirements:
+- Keep the report under 300 words.
+- Never invent numbers.
+- Base every conclusion only on the provided information.
+- Ensure your analysis reflects the selected persona.
+- Ensure your recommendations align with the selected analysis objective.
+- Explain the business implications behind your recommendations.
 """
 
         return prompt[:3000]
