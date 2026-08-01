@@ -2,7 +2,9 @@ from services.ai.personas import PERSONAS
 
 
 class ReportPrompt:
-    """Builds prompts for AI-generated executive reports."""
+    """
+    Builds prompts for AI-generated Executive Briefings.
+    """
 
     @staticmethod
     def build(
@@ -17,77 +19,170 @@ class ReportPrompt:
         info = metadata["dataset_info"]
         capabilities = metadata["capabilities"]
 
-        persona_data = PERSONAS[persona]
-
-        priorities = "\n".join(
-            f"- {item}" for item in persona_data["priorities"]
+        persona_info = PERSONAS.get(
+            persona,
+            {},
         )
 
-        focus_questions = "\n".join(
-            f"- {item}" for item in persona_data["focus_questions"]
+        persona_description = persona_info.get(
+            "description",
+            "",
+        )
+
+        primary_goal = persona_info.get(
+            "primary_goal",
+            "",
+        )
+
+        communication_style = persona_info.get(
+            "communication_style",
+            "",
+        )
+
+        priorities = ", ".join(
+            persona_info.get(
+                "priorities",
+                [],
+            )
+        )
+
+        focus_questions = ", ".join(
+            persona_info.get(
+                "focus_questions",
+                [],
+            )
         )
 
         prompt = f"""
-You are the organization's {persona}.
+You are an experienced {persona}.
 
-PRIMARY GOAL
-------------
-{persona_data["primary_goal"]}
+{persona_description}
 
-CURRENT ANALYSIS OBJECTIVE
---------------------------
-{analysis_objective}
+Primary Goal:
+{primary_goal}
 
-YOUR PRIORITIES
----------------
+Communication Style:
+{communication_style}
+
+Business Priorities:
 {priorities}
 
-WHILE ANALYZING THE DATA, CONTINUALLY ASK YOURSELF
---------------------------------------------------
+Executive Focus:
 {focus_questions}
 
-COMMUNICATION STYLE
--------------------
-{persona_data["communication_style"]}
+----------------------------------------------------
 
-Analyze ONLY the information below.
+ANALYSIS OBJECTIVE
 
-Dataset Type:
+{analysis_objective}
+
+----------------------------------------------------
+
+DATASET TYPE
+
 {dataset_type["label"]}
 
-Dataset Information:
-- Rows: {info["rows"]}
-- Columns: {info["columns"]}
-- Duplicate Rows: {info["duplicate_rows"]}
-- Memory Usage: {info["memory_usage_mb"]} MB
+----------------------------------------------------
 
-Data Quality:
-- Score: {quality["score"]}%
-- Grade: {quality["grade"]}
-- Warnings: {quality["warnings"]}
+DATASET INFORMATION
 
-Dataset Capabilities:
-- Numeric Columns: {len(capabilities["numeric_columns"])}
-- Categorical Columns: {len(capabilities["categorical_columns"])}
-- Datetime Columns: {len(capabilities["datetime_columns"])}
-- Text Columns: {len(capabilities["text_columns"])}
+Rows:
+{info["rows"]}
 
-Business KPIs:
+Columns:
+{info["columns"]}
+
+Duplicate Rows:
+{info["duplicate_rows"]}
+
+Memory Usage:
+{info["memory_usage_mb"]} MB
+
+----------------------------------------------------
+
+DATA QUALITY
+
+Score:
+{quality["score"]}%
+
+Grade:
+{quality["grade"]}
+
+Warnings:
+{quality["warnings"]}
+
+----------------------------------------------------
+
+DATASET CAPABILITIES
+
+Numeric Columns:
+{len(capabilities["numeric_columns"])}
+
+Categorical Columns:
+{len(capabilities["categorical_columns"])}
+
+Datetime Columns:
+{len(capabilities["datetime_columns"])}
+
+Text Columns:
+{len(capabilities["text_columns"])}
+
+----------------------------------------------------
+
+BUSINESS KPIs
+
 {kpis}
 
-Prepare a professional report with the following sections:
+----------------------------------------------------
+
+Instructions
+
+Prepare an executive-quality business briefing.
+
+Use ONLY the information provided.
+
+Do NOT invent numbers.
+
+If the available evidence is insufficient, clearly state that additional analysis is required.
+
+Respond using exactly this structure:
+
+MEMORANDUM
+
+TO:
+Chief Executive Officer and Executive Board
+
+FROM:
+{persona}
+
+SUBJECT:
+Executive Performance & Strategic Direction
+
+----------------------------------------------------
 
 1. Executive Summary
+
+Provide a concise executive overview.
+
+----------------------------------------------------
+
 2. Three Key Findings
+
+Provide three findings.
+
+For each finding, explain why it matters.
+
+----------------------------------------------------
+
 3. Three Strategic Recommendations
 
-Requirements:
-- Keep the report under 300 words.
-- Never invent numbers.
-- Base every conclusion only on the provided information.
-- Ensure your analysis reflects the selected persona.
-- Ensure your recommendations align with the selected analysis objective.
-- Explain the business implications behind your recommendations.
+Provide three practical recommendations.
+
+For each recommendation, include a short Business Implication.
+
+Keep the response under 600 words.
+
+Write professionally for executive leadership.
 """
 
-        return prompt[:3000]
+        return prompt[:7000]
