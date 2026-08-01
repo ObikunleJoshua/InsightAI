@@ -27,6 +27,7 @@ from components.profile_workspace import show_profile_workspace
 from components.analytics_workspace import show_analytics_workspace
 from components.filter_sidebar import show_filter_sidebar
 from components.ai_settings import show_ai_settings
+from components.ai_business_analyst import show_ai_business_analyst
 from components.kpis import (
     show_business_kpis,
     show_review_kpis,
@@ -132,13 +133,14 @@ if current_dataset != st.session_state.last_dataset:
     st.session_state.ai_summary = None
     st.session_state.last_dataset = current_dataset
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
     [
         "**Overview**",
         "**AI Report**",
         "**Charts**",
         "**Analytics**",
         "**Dataset Profile**",
+        "**AI Business Analyst**",
     ]
 )
 
@@ -200,3 +202,23 @@ with tab4:
 with tab5:
 
     show_profile_workspace(dataset_intelligence)
+
+# ==========================
+# AI Business Analyst
+# ==========================
+
+with tab6:
+
+    decision_context = st.session_state["decision_context"]
+
+    analyze, question = show_ai_business_analyst(
+        decision_context.context
+    )
+
+    if analyze:
+
+        st.success("Business Analyst coming in Sprint v0.3 🚀")
+
+        st.write("Question:")
+
+        st.info(question)
