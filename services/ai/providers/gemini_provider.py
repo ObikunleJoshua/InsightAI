@@ -75,3 +75,52 @@ class GeminiProvider(BaseProvider):
                 raise AIServiceUnavailableError(
                     "An unexpected error occurred while generating insights."
                 ) from e
+
+    def generate_from_prompt(
+        self,
+        prompt: str,
+    ) -> str:
+        """
+        Generates a response from a pre-built prompt.
+        """
+
+        for attempt in range(self.MAX_RETRIES):
+
+            try:
+
+                response = self.client.models.generate_content(
+                    model=GEMINI_MODEL,
+                    contents=prompt,
+                )
+
+                if not response.text:
+                    raise AIServiceUnavailableError(
+                        "The AI service returned an empty response."
+                    )
+
+                return response.text
+
+            except ServerError as e:
+
+                if attempt < self.MAX_RETRIES - 1:
+                    time.sleep(2 ** attempt)
+                    continue
+
+                raise AIServiceUnavailableError(
+                    "The AI service is temporarily experiencing high demand. Please try again in a few moments."
+                ) from e
+
+            except ClientError as e:
+
+                raise AIServiceUnavailableError(
+                    f"AI request failed: {e}"
+                ) from e
+
+            except AIServiceUnavailableError:
+                raise
+
+            except Exception as e:
+
+                raise AIServiceUnavailableError(
+                    "An unexpected error occurred while generating insights."
+                ) from e

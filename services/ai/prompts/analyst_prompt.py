@@ -1,4 +1,5 @@
 from services.ai.personas import PERSONAS
+from services.intelligence.evidence_formatter import EvidenceFormatter
 
 
 class AnalystPrompt:
@@ -13,6 +14,7 @@ class AnalystPrompt:
         quality,
         kpis,
         decision_context,
+        evidence,
         persona,
         analysis_objective,
         business_question,
@@ -26,6 +28,10 @@ class AnalystPrompt:
         persona_description = persona_info.get(
             "description",
             "",
+        )
+
+        formatted_evidence = EvidenceFormatter.format(
+            evidence
         )
 
         prompt = f"""
@@ -138,6 +144,12 @@ Risk Indicators:
 BUSINESS KPIs
 
 {kpis}
+
+----------------------------------------------------
+
+BUSINESS INTELLIGENCE
+
+{formatted_evidence}
 
 ----------------------------------------------------
 

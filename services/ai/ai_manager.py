@@ -43,3 +43,29 @@ class AIManager:
             persona,
             analysis_objective,
         )
+
+    @staticmethod
+    def generate_custom_prompt(prompt):
+        """
+        Sends a fully constructed prompt directly to the configured AI provider.
+        """
+
+        provider_name = st.session_state.get(
+            "ai_provider",
+            AI_PROVIDER,
+        )
+
+        provider_class = ProviderRegistry.get_provider_class(
+            provider_name
+        )
+
+        if provider_class is None:
+            raise ValueError(
+                f"Unsupported AI provider: {provider_name}"
+            )
+
+        provider = provider_class()
+
+        return provider.generate_from_prompt(
+            prompt
+        )

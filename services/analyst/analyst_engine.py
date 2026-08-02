@@ -1,45 +1,45 @@
-from services.analyst.evidence_builder import EvidenceBuilder
+from services.ai.ai_manager import AIManager
 from services.ai.prompts.analyst_prompt import AnalystPrompt
 
 
 class AnalystEngine:
     """
-    Coordinates the AI Business Analyst workflow.
+    Orchestrates the AI Business Analyst workflow.
     """
 
     @staticmethod
-    def prepare_analysis(
+    def analyze(
         df,
         dataset_type,
         metadata,
         quality,
         kpis,
+        intelligence,
         decision_context,
         persona,
         analysis_objective,
         business_question,
     ):
 
-        evidence = EvidenceBuilder.build(df)
+        # Use the Intelligence Layer
+        evidence = intelligence["evidence"]
 
+        # Build AI Prompt
         prompt = AnalystPrompt.build(
             dataset_type=dataset_type,
             metadata=metadata,
             quality=quality,
             kpis=kpis,
             decision_context=decision_context,
+            evidence=evidence,
             persona=persona,
             analysis_objective=analysis_objective,
             business_question=business_question,
         )
 
-        return {
+        # AI Response
+        response = AIManager.generate_custom_prompt(
+            prompt=prompt
+        )
 
-            "prompt": prompt,
-
-            "evidence": evidence,
-
-            "question": business_question,
-
-            "context": decision_context.context,
-        }
+        return response

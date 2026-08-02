@@ -12,6 +12,11 @@ from services.review_service import ReviewService
 from services.ai.ai_manager import AIManager
 from services.export.export_manager import ExportManager
 from services.decision.context_engine import DecisionContextEngine
+from services.analyst.analyst_engine import AnalystEngine
+from services.intelligence.intelligence_engine import IntelligenceEngine
+from services.intelligence.test_semantic import (
+    show_semantic_discovery,
+)
 
 # ==========================
 # Components
@@ -99,6 +104,14 @@ decision_context = DecisionContextEngine.analyze(
 st.session_state["decision_context"] = decision_context
 
 # ==========================
+# Intelligence Layer
+# ==========================
+
+intelligence = IntelligenceEngine.analyze(df)
+
+st.write(intelligence)
+
+# ==========================
 # Generate KPIs
 # ==========================
 
@@ -125,6 +138,12 @@ if "ai_summary" not in st.session_state:
 if "last_dataset" not in st.session_state:
     st.session_state.last_dataset = ""
 
+if "ai_persona" not in st.session_state:
+    st.session_state.ai_persona = "Executive Advisor"
+
+if "analysis_objective" not in st.session_state:
+    st.session_state.analysis_objective = "Executive Summary"
+
 current_dataset = uploaded_file.name
 
 # New dataset uploaded?
@@ -133,7 +152,7 @@ if current_dataset != st.session_state.last_dataset:
     st.session_state.ai_summary = None
     st.session_state.last_dataset = current_dataset
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
     [
         "**Overview**",
         "**AI Report**",
@@ -141,6 +160,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
         "**Analytics**",
         "**Dataset Profile**",
         "**AI Business Analyst**",
+        "**Semantic Discovery**",
     ]
 )
 
@@ -217,8 +237,27 @@ with tab6:
 
     if analyze:
 
-        st.success("Business Analyst coming in Sprint v0.3 🚀")
+        with st.spinner("Analyzing your business question..."):
 
-        st.write("Question:")
+            try:
 
-        st.info(question)
+                response = AnalystEngine.analyze(
+                    df=df,
+                    dataset_type=dataset_type,
+                    metadata=dataset_intelligence,
+                    quality=quality,
+                    kpis=kpis,
+                    intelligence=st.session_state["intelligence"],
+                    decision_context=decision_context,
+                    persona=st.session_state.ai_persona,
+                    analysis_objective=st.session_state.analysis_objective,
+                    business_question=question,
+                )
+
+                st.success("Analysis Complete")
+
+                st.markdown(response)
+
+            except Exception as e:
+
+                st.error(str(e))
