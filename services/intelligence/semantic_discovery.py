@@ -1,4 +1,5 @@
 from services.intelligence.column_profiler import ColumnProfiler
+from services.intelligence.business_rules import BusinessRules
 
 
 class SemanticDiscovery:
@@ -53,119 +54,25 @@ class SemanticDiscovery:
     @staticmethod
     def _classify(profile):
 
-        # -----------------------
-        # Time
-        # -----------------------
+        scores = BusinessRules.score(profile)
 
-        if profile["is_datetime"]:
+        semantic = max(
+            scores,
+            key=scores.get,
+        )
 
-            return "time_columns"
-
-        # -----------------------
-        # Metric
-        # -----------------------
-
-        if profile["is_numeric"]:
-
-            return "metrics"
-
-        # -----------------------
-        # Identifier
-        # -----------------------
-
-        if profile["unique_ratio"] >= 0.95:
-
-            return "identifiers"
-
-        # -----------------------
-        # Dimension
-        # -----------------------
-
-        if profile["unique_ratio"] <= 0.30:
-
-            return "dimensions"
-
-        # -----------------------
-        # Text
-        # -----------------------
-
-        if (
-
-            profile["is_text"]
-
-            and profile["average_length"] is not None
-
-            and profile["average_length"] > 40
-
-        ):
-
-            return "text_columns"
-
-        # -----------------------
-        # Entity
-        # -----------------------
-
-        if (
-
-            profile["is_text"]
-
-            and profile["unique_ratio"] > 0.30
-
-        ):
-
-            return "entities"
-
-        # -----------------------
-        # Unknown
-        # -----------------------
-
-        return "unknown_columns"
+        return semantic
 
     @staticmethod
     def _confidence(profile, semantic):
 
-        score = 0.50
+        scores = BusinessRules.score(profile)
 
-        if semantic == "metrics":
+        total = sum(scores.values())
 
-            if profile["is_numeric"]:
+        if total == 0:
+            return 0.0
 
-                score += 0.40
+        confidence = scores[semantic] / total
 
-            if profile["statistics"]:
-
-                score += 0.10
-
-        elif semantic == "time_columns":
-
-            if profile["is_datetime"]:
-
-                score += 0.50
-
-        elif semantic == "identifiers":
-
-            score += min(
-                profile["unique_ratio"],
-                0.50,
-            )
-
-        elif semantic == "dimensions":
-
-            score += 0.40 * (
-                1 - profile["unique_ratio"]
-            )
-
-        elif semantic == "entities":
-
-            score += 0.30
-
-        elif semantic == "text_columns":
-
-            score += 0.30
-
-        return round(
-
-            min(score, 1.0),
-
-            2,
-        )
+        return round(confidence, 2)
