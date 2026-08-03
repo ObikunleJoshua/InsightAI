@@ -14,9 +14,7 @@ from services.export.export_manager import ExportManager
 from services.decision.context_engine import DecisionContextEngine
 from services.analyst.analyst_engine import AnalystEngine
 from services.intelligence.intelligence_engine import IntelligenceEngine
-from services.intelligence.test_semantic import (
-    show_semantic_discovery,
-)
+
 
 # ==========================
 # Components
@@ -109,7 +107,9 @@ st.session_state["decision_context"] = decision_context
 
 intelligence = IntelligenceEngine.analyze(df)
 
-st.write(intelligence)
+st.session_state["intelligence"] = intelligence
+
+# st.write(intelligence)
 
 # ==========================
 # Generate KPIs
@@ -152,7 +152,7 @@ if current_dataset != st.session_state.last_dataset:
     st.session_state.ai_summary = None
     st.session_state.last_dataset = current_dataset
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
     [
         "**Overview**",
         "**AI Report**",
@@ -160,7 +160,6 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
         "**Analytics**",
         "**Dataset Profile**",
         "**AI Business Analyst**",
-        "**Semantic Discovery**",
     ]
 )
 

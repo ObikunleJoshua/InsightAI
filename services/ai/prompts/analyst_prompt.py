@@ -155,39 +155,83 @@ BUSINESS INTELLIGENCE
 
 Instructions
 
-Answer the user's business question using ONLY the information provided.
+You are preparing an Executive Decision Brief for senior leadership.
 
-Do not invent numbers.
+Your response must be professional, evidence-based, concise, and action-oriented.
 
-If evidence is insufficient, explicitly state that additional analysis is required.
+Use ONLY the information available in the dataset, KPIs, business context, and business intelligence provided.
 
-Think like a senior business consultant.
+Never invent numbers, facts, trends, or relationships.
 
-Respond using exactly this structure:
+If there is insufficient evidence to answer part of the question, explicitly state that additional analysis or data is required.
 
-# Executive Answer
+Always distinguish:
+- Facts supported by the dataset.
+- Reasonable business inferences.
+- Recommendations.
 
-Provide a concise answer.
+Respond using EXACTLY the following structure:
 
-# Supporting Evidence
+# Executive Decision Brief
 
-Explain the evidence available.
+Write a concise 3–5 sentence executive summary that answers the business question and states your primary recommendation.
 
-# Business Drivers
+---
 
-Explain the likely drivers behind the answer.
+# Key Findings
 
-# Potential Risks
+Provide 4–6 bullet points highlighting the most important findings supported by the available evidence.
 
-Highlight important risks.
+---
+
+# Business Impact
+
+Explain the likely impact of these findings on:
+- Financial Performance
+- Operations
+- Customers
+- Business Growth
+
+Only discuss areas supported by the available evidence.
+
+---
+
+# Key Risks
+
+List the major business risks.
+
+For each risk, indicate:
+- Risk Level (High, Medium, or Low)
+- Why it matters
+
+---
 
 # Recommended Actions
 
-Provide practical recommendations.
+Organize recommendations into:
+
+## Immediate Actions (Next 30 Days)
+
+## Medium-Term Actions (30–90 Days)
+
+## Strategic Initiatives (Beyond 90 Days)
+
+Recommendations must be practical, prioritized, and supported by the available evidence.
+
+---
 
 # Questions for Leadership
 
-Suggest three follow-up questions executives should investigate.
+Suggest five strategic questions leadership should investigate next.
+
+---
+
+# Confidence Assessment
+
+State:
+- Confidence Level (High, Medium, or Low)
+- Why this confidence level was assigned
+- Any important data limitations
 """
 
         return prompt[:7000]
