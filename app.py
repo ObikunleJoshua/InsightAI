@@ -38,7 +38,7 @@ from components.kpis import (
 from components.charts import show_charts
 from components.profile import show_profile
 from components.ai_panel import show_ai_panel
-
+from components.executive_brief import ExecutiveBrief
 
 # ==========================
 # Streamlit Configuration
@@ -255,7 +255,7 @@ with tab6:
 
                 st.success("Analysis Complete")
 
-                st.markdown(response)
+                ExecutiveBrief.render(response)
 
             except Exception as e:
 
