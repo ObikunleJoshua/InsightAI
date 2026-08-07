@@ -91,6 +91,8 @@ dataset_type = DatasetClassifier.classify(metadata)
 dataset_intelligence = metadata
 quality = dataset_intelligence["quality"]
 
+st.session_state["dataset_quality"] = quality
+
 # ==========================
 # Decision Context
 # ==========================

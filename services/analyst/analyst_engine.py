@@ -1,3 +1,4 @@
+from services.analyst.evidence_builder import EvidenceBuilder
 from services.ai.ai_manager import AIManager
 from services.ai.prompts.analyst_prompt import AnalystPrompt
 
@@ -21,10 +22,10 @@ class AnalystEngine:
         business_question,
     ):
 
-        # Use the Intelligence Layer
-        evidence = intelligence["evidence"]
+        # Build business evidence
+        evidence = EvidenceBuilder.build(df)
 
-        # Build AI Prompt
+        # Build AI prompt
         prompt = AnalystPrompt.build(
             dataset_type=dataset_type,
             metadata=metadata,
@@ -37,9 +38,27 @@ class AnalystEngine:
             business_question=business_question,
         )
 
-        # AI Response
-        response = AIManager.generate_custom_prompt(
+        # -------------------------
+        # Validation
+        # -------------------------
+
+        if prompt is None:
+            raise ValueError("AnalystPrompt.build() returned None.")
+
+        if not isinstance(prompt, str):
+            raise ValueError(
+                f"Prompt must be a string. Got {type(prompt)}"
+            )
+
+        if len(prompt.strip()) == 0:
+            raise ValueError(
+                "Prompt is empty."
+            )
+
+        # -------------------------
+        # Generate AI response
+        # -------------------------
+
+        return AIManager.generate_custom_prompt(
             prompt=prompt
         )
-
-        return response

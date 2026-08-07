@@ -63,6 +63,14 @@ class GeminiProvider(BaseProvider):
 
             except ClientError as e:
 
+                message = str(e)
+
+                if "RESOURCE_EXHAUSTED" in message or "429" in message:
+                    raise AIServiceUnavailableError(
+                        "Gemini API quota exceeded.\n\n"
+                        "Please wait a minute and try again, or use another API key if your daily free quota has been exhausted."
+                    )
+
                 raise AIServiceUnavailableError(
                     f"AI request failed: {e}"
                 ) from e
@@ -76,6 +84,7 @@ class GeminiProvider(BaseProvider):
                     "An unexpected error occurred while generating insights."
                 ) from e
 
+
     def generate_from_prompt(
         self,
         prompt: str,
@@ -84,23 +93,38 @@ class GeminiProvider(BaseProvider):
         Generates a response from a pre-built prompt.
         """
 
+        print("=" * 80)
+        print("GEMINI REQUEST STARTED")
+        print(f"Prompt length: {len(prompt)} characters")
+        print("=" * 80)
+
         for attempt in range(self.MAX_RETRIES):
 
             try:
+
+                print(f"Attempt {attempt + 1}...")
 
                 response = self.client.models.generate_content(
                     model=GEMINI_MODEL,
                     contents=prompt,
                 )
 
+                print("Gemini returned a response.")
+
                 if not response.text:
                     raise AIServiceUnavailableError(
                         "The AI service returned an empty response."
                     )
 
+                print(f"Response length: {len(response.text)} characters")
+                print("GEMINI REQUEST FINISHED")
+                print("=" * 80)
+
                 return response.text
 
             except ServerError as e:
+
+                print(f"ServerError: {e}")
 
                 if attempt < self.MAX_RETRIES - 1:
                     time.sleep(2 ** attempt)
@@ -112,14 +136,15 @@ class GeminiProvider(BaseProvider):
 
             except ClientError as e:
 
+                print(f"ClientError: {e}")
+
                 raise AIServiceUnavailableError(
                     f"AI request failed: {e}"
                 ) from e
 
-            except AIServiceUnavailableError:
-                raise
-
             except Exception as e:
+
+                print(f"Unexpected Exception: {repr(e)}")
 
                 raise AIServiceUnavailableError(
                     "An unexpected error occurred while generating insights."
