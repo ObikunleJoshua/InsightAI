@@ -1,27 +1,27 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
----
-
-## [1.0.0] - Unreleased
+## v0.3.0
+### Executive Brief Redesign
 
 ### Added
-- MetadataService
-- Dataset Intelligence architecture
-- AI Manager provider architecture
-- ExportManager (Markdown, DOCX, PDF)
-- AnalyticsService
-- ChartService
-- DatasetClassifier
-- Metadata unit tests
+- Executive Snapshot
+- Executive Decision Brief
+- Key Findings
+- Business Impact
+- Risk Assessment
+- Recommended Actions
+- Leadership Questions
+- Confidence Assessment
 
-### Changed
-- Refactored DataService to focus on dataset loading only.
-- Migrated AI layer to Dataset Intelligence.
-- Migrated AnalyticsService to MetadataService.
-- Refactored Dataset Profile workspace.
+### Improved
+- Cleaner UI
+- Better parsing
+- Responsive layout
+- AI recommendations
+- Business-oriented language
 
 ### Fixed
-- Removed duplicated metadata logic.
-- Improved architecture consistency.
+- HTML rendering
+- Card layouts
+- Parser stability
+- Empty section handling
